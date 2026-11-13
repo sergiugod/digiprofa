@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antrenament DigiProf – Nivel A</title>
+<meta name="description" content="Pagină de exersare pentru testul de competențe digitale DigiProf, nivelul A: simulare cu 66 de itemi și antrenare rapidă cu 20 de itemi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16223b; --ink2:#3b4660; --mute:#6f7890; --paper:#f6f1e6; --card:#fffdf8; --line:#e3dac7;
+  --gold:#b9852b; --gold2:#e9c77b; --ok:#1d7a6c; --okbg:#e2f1ec; --err:#b3402e; --errbg:#f8e4de;
+  --navy:#16223b; --navy2:#22335a; --flag:#c96a12;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif; --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:16px; --shadow:0 1px 2px rgba(22,34,59,.06),0 8px 28px rgba(22,34,59,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(circle at 1px 1px,rgba(22,34,59,.045) 1px,transparent 0);background-size:22px 22px}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:8px}
+
+/* ---------- HOME ---------- */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+  border:1px solid rgba(233,199,123,.35);box-shadow:0 0 0 40px rgba(233,199,123,.06),0 0 0 90px rgba(233,199,123,.04)}
+.hero .wrap{padding:56px 20px 64px;position:relative;z-index:1}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.eyebrow i{width:26px;height:1px;background:var(--gold2);display:block}
+.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;margin:16px 0 14px;max-width:16ch}
+.hero h1 em{font-style:italic;color:var(--gold2);font-weight:400}
+.hero p{max-width:60ch;color:#cfd6e6;font-size:17px;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.facts span{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:#e8ecf5;background:rgba(255,255,255,.05)}
+.facts b{color:var(--gold2)}
+.setup{margin-top:-34px;position:relative;z-index:2;padding-bottom:60px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px}
+.step{display:flex;align-items:baseline;gap:12px;margin:0 0 14px}
+.step .n{font-family:var(--serif);font-size:15px;color:var(--gold);font-weight:700;border:1.5px solid var(--gold);width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none}
+.step h2{font-size:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.pick{position:relative;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:18px 18px 18px 64px;transition:.15s;min-height:104px}
+.pick:hover{border-color:var(--gold);transform:translateY(-1px)}
+.pick .ico{position:absolute;left:16px;top:18px;width:36px;height:36px;border-radius:10px;background:#f2ead8;display:grid;place-items:center;color:var(--gold)}
+.pick .ico svg{width:20px;height:20px}
+.pick b{display:block;font-size:17px;margin-bottom:3px}
+.pick small{color:var(--mute);font-size:13.5px;display:block}
+.pick .tag{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--ink2);background:#f2ead8;border-radius:6px;padding:2px 8px}
+.pick[aria-checked="true"]{border-color:var(--navy);background:#fbf7ee;box-shadow:inset 0 0 0 1.5px var(--navy)}
+.pick[aria-checked="true"] .ico{background:var(--navy);color:var(--gold2)}
+.pick[aria-checked="true"]::after{content:"✓";position:absolute;right:14px;top:12px;width:22px;height:22px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;display:grid;place-items:center}
+.row{display:flex;gap:14px;align-items:end;flex-wrap:wrap}
+.field{flex:1;min-width:240px}
+.field label{display:block;font-weight:700;font-size:13.5px;margin-bottom:6px}
+.field input{width:100%;font:inherit;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--navy)}
+.btn{border:0;border-radius:12px;padding:13px 22px;font-weight:700;font-size:15.5px;background:var(--navy);color:#fff;transition:.15s;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.btn:hover{background:#0d1730}
+.btn.gold{background:var(--gold);color:#fff}.btn.gold:hover{background:#9c6e1e}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.btn.ghost:hover{border-color:var(--ink);background:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.big{padding:15px 28px;font-size:16.5px}
+.note{font-size:13.5px;color:var(--mute);margin:16px 0 0}
+.resume{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#fbf3df;border:1px solid var(--gold2);border-radius:14px;padding:14px 18px;margin-bottom:22px;font-size:14.5px}
+.resume div{display:flex;gap:8px}
+.hist{margin-top:26px;border-top:1px dashed var(--line);padding-top:18px}
+.hist h3{font-size:16px;margin-bottom:10px}
+.hist ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:14px;color:var(--ink2)}
+.hist li{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.hist li b{font-variant-numeric:tabular-nums}
+.foot{text-align:center;color:var(--mute);font-size:12.5px;padding:0 20px 36px;max-width:760px;margin:0 auto}
+
+/* ---------- QUIZ ---------- */
+.bar{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff}
+.bar .wrap{display:flex;align-items:center;gap:16px;height:62px}
+.bar .ttl{font-family:var(--serif);font-size:17px;white-space:nowrap}
+.bar .ttl small{font-family:var(--sans);font-weight:600;color:#aab4cc;font-size:12.5px;margin-left:8px}
+.bar .sp{flex:1}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:18px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:10px;display:flex;gap:8px;align-items:center}
+.timer svg{width:16px;height:16px;opacity:.8}
+.timer.low{background:var(--err)}
+.bar .btn{padding:9px 16px;font-size:14px}
+.prog{height:4px;background:rgba(255,255,255,.14)}.prog i{display:block;height:100%;background:var(--gold2);width:0;transition:width .25s}
+.qlayout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;padding-top:26px;padding-bottom:60px;align-items:start}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:30px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.qno{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.qdom{font-size:12.5px;font-weight:700;color:var(--ink2);background:#f2ead8;border-radius:999px;padding:4px 12px}
+.qtext{font-family:var(--serif);font-size:clamp(20px,2.4vw,25px);line-height:1.32;font-weight:600;margin:0 0 22px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;font-size:16px;transition:.12s}
+.opt:hover:not(:disabled){border-color:var(--navy);background:#fbf7ee}
+.opt .l{flex:none;width:30px;height:30px;border-radius:9px;background:#f2ead8;font-weight:800;font-size:14px;display:grid;place-items:center;text-transform:lowercase}
+.opt .t{padding-top:3px}
+.opt.sel{border-color:var(--navy);background:#fbf7ee;box-shadow:inset 0 0 0 1.5px var(--navy)}
+.opt.sel .l{background:var(--navy);color:#fff}
+.opt.good{border-color:var(--ok);background:var(--okbg);box-shadow:inset 0 0 0 1.5px var(--ok)}
+.opt.good .l{background:var(--ok);color:#fff}
+.opt.bad{border-color:var(--err);background:var(--errbg);box-shadow:inset 0 0 0 1.5px var(--err)}
+.opt.bad .l{background:var(--err);color:#fff}
+.opt:disabled{cursor:default;color:var(--ink)}
+.explain{margin-top:18px;border-radius:14px;padding:16px 18px;border-left:4px solid var(--ok);background:var(--okbg);font-size:15px}
+.explain.no{border-color:var(--err);background:var(--errbg)}
+.explain b{display:block;margin-bottom:3px}
+.qnav{display:flex;gap:10px;justify-content:space-between;margin-top:24px;flex-wrap:wrap}
+.qnav .mid{display:flex;gap:10px}
+.flagbtn.on{border-color:var(--flag);color:var(--flag);background:#fdf1e3}
+.side{position:sticky;top:84px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.side h3{font-size:16px;margin-bottom:12px}
+.gridn{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.gridn button{aspect-ratio:1;border:1.5px solid var(--line);background:#fff;border-radius:9px;font-size:12.5px;font-weight:700;padding:0;position:relative;color:var(--ink2)}
+.gridn button.a{background:var(--navy);border-color:var(--navy);color:#fff}
+.gridn button.g{background:var(--ok);border-color:var(--ok);color:#fff}
+.gridn button.b{background:var(--err);border-color:var(--err);color:#fff}
+.gridn button.c{outline:2.5px solid var(--gold);outline-offset:1.5px}
+.gridn button.f::after{content:"";position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--flag);border:1.5px solid #fff}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:14px;font-size:12px;color:var(--mute)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend i{width:11px;height:11px;border-radius:3px;display:block;border:1.5px solid var(--line);background:#fff}
+.legend i.a{background:var(--navy);border-color:var(--navy)}.legend i.f{background:var(--flag);border-color:var(--flag);border-radius:50%}
+.legend i.g{background:var(--ok);border-color:var(--ok)}.legend i.b{background:var(--err);border-color:var(--err)}
+.kbd{font-size:12px;color:var(--mute);margin-top:12px}
+
+/* ---------- MODAL ---------- */
+.modal{position:fixed;inset:0;background:rgba(22,34,59,.55);display:grid;place-items:center;z-index:50;padding:20px}
+.modal .box{background:var(--card);border-radius:20px;padding:28px;max-width:440px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.modal h3{font-size:22px;margin-bottom:8px}
+.modal p{color:var(--ink2);margin:0 0 20px}
+.modal .acts{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+
+/* ---------- RESULT ---------- */
+.res{padding:40px 20px 70px}
+.rhead{display:grid;grid-template-columns:240px 1fr;gap:34px;align-items:center;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:26px;padding:34px;box-shadow:var(--shadow)}
+.ring{position:relative;width:220px;height:220px;margin:0 auto}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .v b{font-family:var(--serif);font-size:52px;line-height:1;display:block}
+.ring .v span{font-size:14px;color:#c4cce0;font-weight:600}
+.lvl{display:inline-block;font-weight:800;letter-spacing:.1em;font-size:13px;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:var(--gold2);color:var(--navy)}
+.lvl.a1{background:#d9deea}
+.rhead h2{font-size:clamp(26px,3.6vw,38px);margin:14px 0 8px;line-height:1.1}
+.rhead p{color:#cfd6e6;margin:0 0 20px;max-width:56ch}
+.rhead .acts{display:flex;gap:10px;flex-wrap:wrap}
+.rhead .btn.ghost{color:#fff;border-color:rgba(255,255,255,.3)}.rhead .btn.ghost:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.sect{margin-top:30px}
+.sect>h3{font-size:22px;margin-bottom:14px}
+.doms{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dom{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.dom .top{display:flex;justify-content:space-between;gap:10px;font-size:14.5px;font-weight:700;margin-bottom:8px}
+.dom .top span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dom .track{height:8px;background:#eee6d4;border-radius:99px;overflow:hidden}
+.dom .track i{display:block;height:100%;border-radius:99px;background:var(--ok)}
+.dom .track i.low{background:var(--err)}
+.filters{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:700}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.rev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:10px}
+.rev .h{display:flex;gap:10px;align-items:baseline;margin-bottom:8px}
+.rev .h b{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.rev .h em{font-style:normal;font-size:12px;font-weight:800;border-radius:6px;padding:2px 8px}
+.rev .h em.ok{background:var(--okbg);color:var(--ok)}.rev .h em.no{background:var(--errbg);color:var(--err)}
+.rev p.q{font-weight:700;margin:0 0 10px}
+.rev ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:14.5px}
+.rev li{padding:6px 10px;border-radius:8px;display:flex;gap:8px}
+.rev li.good{background:var(--okbg);color:#12564c;font-weight:600}
+.rev li.bad{background:var(--errbg);color:#7d2a1d}
+.rev li i{font-style:normal;font-weight:800;width:16px;flex:none}
+.rev .why{font-size:13.5px;color:var(--ink2);margin:10px 0 0;padding-left:10px;border-left:3px solid var(--gold2)}
+
+/* ---------- CERTIFICATE ---------- */
+.certpage{padding:30px 20px 70px}
+.certtools{display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-bottom:22px}
+.sheetwrap{container-type:inline-size;max-width:1000px;margin:0 auto}
+.sheet{aspect-ratio:297/210;background:#fffdf7;position:relative;box-shadow:0 20px 60px rgba(22,34,59,.2);color:var(--navy);overflow:hidden;font-size:1.55cqw}
+.sheet .frame{position:absolute;inset:2.6%;border:.28em solid var(--navy)}
+.sheet .frame::before{content:"";position:absolute;inset:.7em;border:.08em solid var(--gold)}
+.sheet .corner{position:absolute;width:6em;height:6em;border:.28em solid var(--gold)}
+.sheet .corner.tl{left:1.6em;top:1.6em;border-right:0;border-bottom:0}.sheet .corner.tr{right:1.6em;top:1.6em;border-left:0;border-bottom:0}
+.sheet .corner.bl{left:1.6em;bottom:1.6em;border-right:0;border-top:0}.sheet .corner.br{right:1.6em;bottom:1.6em;border-left:0;border-top:0}
+.sheet .in{position:absolute;inset:8% 9% 7%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.sheet .k{font-weight:800;letter-spacing:.32em;text-transform:uppercase;font-size:.95em;color:var(--gold)}
+.sheet h2{font-size:4.3em;line-height:1;margin:.22em 0 .1em;font-weight:700}
+.sheet .sub{font-family:var(--serif);font-style:italic;font-size:1.5em;color:var(--ink2)}
+.sheet .rule{width:9em;height:.1em;background:var(--gold);margin:1.2em 0 1em}
+.sheet .lab{font-size:1.05em;color:var(--mute)}
+.sheet .nm{font-family:var(--serif);font-size:3.3em;font-weight:600;line-height:1.1;margin:.12em 0 .16em;border-bottom:.04em solid var(--line);padding:0 .6em .1em;min-width:55%}
+.sheet .txt{font-size:1.22em;max-width:46em;color:var(--ink2);line-height:1.5}
+.sheet .txt b{color:var(--navy)}
+.sheet .stats{display:flex;gap:1.2em;margin-top:1.1em}
+.sheet .stat{border:.08em solid var(--line);background:#fff;border-radius:.8em;padding:.7em 1.4em;min-width:9.5em}
+.sheet .stat b{display:block;font-family:var(--serif);font-size:2.1em;line-height:1.1}
+.sheet .stat span{font-size:.82em;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.sheet .stat.hl{background:var(--navy);border-color:var(--navy);color:#fff}.sheet .stat.hl span{color:var(--gold2)}
+.sheet .bot{margin-top:auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;font-size:1em;color:var(--ink2);text-align:left}
+.sheet .bot div b{display:block;color:var(--navy);font-size:1.12em}
+.sheet .bot .disc{text-align:right;max-width:24em;font-size:.86em;color:var(--mute);line-height:1.4}
+.seal{position:absolute;left:50%;bottom:6.5%;transform:translateX(-50%);width:8em;height:8em}
+.seal svg{width:100%;height:100%}
+
+@media (max-width:860px){
+  .grid2,.doms{grid-template-columns:1fr}
+  .qlayout{grid-template-columns:1fr}.side{position:static}
+  .gridn{grid-template-columns:repeat(11,1fr)}
+  .rhead{grid-template-columns:1fr;text-align:center}.rhead .acts{justify-content:center}.rhead p{margin-left:auto;margin-right:auto}
+  .bar .ttl small{display:none}
+  .qcard{padding:22px}
+}
+@media (max-width:560px){.gridn{grid-template-columns:repeat(8,1fr)}.bar .ttl{display:none}.panel{padding:20px}}
+@media print{
+  @page{size:A4 landscape;margin:0}
+  body{background:#fff!important}
+  body>*:not(#cert){display:none!important}
+  .certpage{padding:0}.certtools{display:none!important}
+  .sheetwrap{max-width:none;width:297mm}
+  .sheet{box-shadow:none;width:297mm;height:210mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HOME ================= -->
+<section id="home">
+  <header class="hero"><div class="wrap">
+    <span class="eyebrow"><i></i>Competențe digitale · DigCompEdu</span>
+    <h1>Antrenament pentru testul DigiProf, <em>nivelul A</em></h1>
+    <p>Exersați pe situații de la clasă asemănătoare celor din test, pe toate cele 6 domenii de competență, și aflați dacă sunteți pregătit pentru nivelul A2.</p>
+    <div class="facts">
+      <span><b>66</b> de itemi</span><span><b>90</b> de minute</span><span><b>80%</b> pentru nivelul A2</span><span><b>6</b> domenii × 11 itemi</span>
+    </div>
+  </div></header>
+
+  <div class="wrap setup"><div class="panel">
+    <div class="resume" id="resume" hidden>
+      <span id="resumeTxt"></span>
+      <div><button class="btn ghost" id="resumeNo">Renunț</button><button class="btn gold" id="resumeYes">Continuă testul</button></div>
+    </div>
+
+    <div class="step"><span class="n">1</span><h2>Alegeți profilul</h2></div>
+    <div class="grid2" role="radiogroup" aria-label="Profil">
+      <button class="pick" role="radio" aria-checked="false" data-profile="g">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+        <b>Gimnaziu și liceu</b><small>Situații cu profesori de discipline: matematică, fizică, limbi, istorie, informatică…</small>
+      </button>
+      <button class="pick" role="radio" aria-checked="false" data-profile="p">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><circle cx="17.5" cy="17.5" r="3.5"/></svg></span>
+        <b>Clasele primare și grădiniță</b><small>Situații cu învățătoare și educatoare: litere, numere, povești, comunicarea cu părinții…</small>
+      </button>
+    </div>
+
+    <div class="step"><span class="n">2</span><h2>Alegeți tipul testului</h2></div>
+    <div class="grid2" role="radiogroup" aria-label="Tipul testului">
+      <button class="pick" role="radio" aria-checked="false" data-mode="sim">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span>
+        <b>Simulare de examen</b><small>66 de itemi, 90 de minute, ca la testul real. Răspunsurile corecte se văd abia la final.</small>
+        <span class="tag">Stabilește nivelul A1 / A2</span>
+      </button>
+      <button class="pick" role="radio" aria-checked="false" data-mode="tr">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+        <b>Antrenare rapidă</b><small>20 de itemi, fără limită de timp. După fiecare răspuns vedeți varianta corectă și explicația.</small>
+        <span class="tag">Aproximativ 10–15 minute</span>
+      </button>
+    </div>
+
+    <div class="step"><span class="n">3</span><h2>Numele pentru certificat</h2></div>
+    <div class="row">
+      <div class="field"><label for="name">Nume și prenume <span style="font-weight:500;color:var(--mute)">(opțional – îl puteți completa și la final)</span></label>
+        <input id="name" type="text" autocomplete="name" maxlength="60" placeholder="ex.: Popescu Maria"></div>
+      <button class="btn big" id="start" disabled>Începe testul →</button>
+    </div>
+    <p class="note" id="startNote">Alegeți profilul și tipul testului pentru a începe.</p>
+
+    <div class="hist" id="hist" hidden><h3>Ultimele rezultate pe acest dispozitiv</h3><ul id="histList"></ul></div>
+  </div></div>
+  <p class="foot">Pagină de antrenament realizată independent, cu itemi noi, construiți după structura testului de competențe digitale – nivelul A. Nu este un instrument oficial DigiProf, iar certificatul generat aici are doar valoare de autoevaluare.</p>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section id="quiz" hidden>
+  <div class="bar">
+    <div class="wrap">
+      <span class="ttl"><span id="barTitle"></span><small id="barProfile"></small></span>
+      <span class="sp"></span>
+      <span class="timer" id="timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span id="time">90:00</span></span>
+      <button class="btn gold" id="finish">Finalizează</button>
+    </div>
+    <div class="prog"><i id="prog"></i></div>
+  </div>
+  <div class="wrap qlayout">
+    <article class="qcard">
+      <div class="qmeta"><span class="qno" id="qno"></span><span class="qdom" id="qdom"></span></div>
+      <h2 class="qtext" id="qtext"></h2>
+      <div class="opts" id="opts"></div>
+      <div class="explain" id="explain" hidden></div>
+      <div class="qnav">
+        <button class="btn ghost" id="prev">← Înapoi</button>
+        <div class="mid"><button class="btn ghost flagbtn" id="flag">⚑ Marchează</button></div>
+        <button class="btn" id="next">Următoarea →</button>
+      </div>
+    </article>
+    <aside class="side">
+      <h3>Navigare</h3>
+      <div class="gridn" id="gridn"></div>
+      <div class="legend" id="legend"></div>
+      <p class="kbd">Tastatură: 1–6 sau A–F alege varianta, ← → schimbă întrebarea.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= RESULT ================= -->
+<section id="result" hidden>
+  <div class="wrap res">
+    <div class="rhead">
+      <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="9"/><circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="#e9c77b" stroke-width="9" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg>
+        <div class="v"><div><b id="rPct"></b><span id="rScore"></span></div></div></div>
+      <div>
+        <span class="lvl" id="rLvl"></span>
+        <h2 id="rTitle"></h2>
+        <p id="rMsg"></p>
+        <div class="acts">
+          <button class="btn gold" id="toCert">Certificat de antrenament</button>
+          <button class="btn ghost" id="again">Test nou</button>
+        </div>
+      </div>
+    </div>
+    <div class="sect"><h3>Rezultate pe domenii</h3><div class="doms" id="doms"></div></div>
+    <div class="sect"><h3>Revizuirea răspunsurilor</h3>
+      <div class="filters"><button class="chip on" data-f="wrong">Doar greșite și necompletate</button><button class="chip" data-f="all">Toate întrebările</button></div>
+      <div id="review"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATE ================= -->
+<section id="cert" hidden>
+  <div class="wrap certpage">
+    <div class="certtools">
+      <div class="field"><label for="cname">Nume și prenume pe certificat</label><input id="cname" type="text" maxlength="60" placeholder="Scrieți numele dvs."></div>
+      <button class="btn gold" id="print">Tipărește / Salvează PDF</button>
+      <button class="btn ghost" id="backRes">← Înapoi la rezultate</button>
+    </div>
+    <div class="sheetwrap"><div class="sheet">
+      <div class="frame"></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="seal"><svg viewBox="0 0 100 100"><g fill="#b9852b"><path id="sealStar" d=""/></g><circle cx="50" cy="50" r="33" fill="#16223b"/><circle cx="50" cy="50" r="29" fill="none" stroke="#e9c77b" stroke-width=".8"/><text id="sealLvl" x="50" y="56" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-size="24" font-weight="700" fill="#e9c77b"></text><text id="sealSub" x="50" y="68" text-anchor="middle" font-family="Manrope,sans-serif" font-size="4.6" font-weight="800" letter-spacing=".8" fill="#fff"></text></svg></div>
+      <div class="in">
+        <span class="k">Competențe digitale · Nivelul A</span>
+        <h2>Certificat de antrenament</h2>
+        <span class="sub" id="cSub"></span>
+        <i class="rule"></i>
+        <span class="lab">Se acordă</span>
+        <div class="nm" id="cNm"></div>
+        <p class="txt" id="cTxt"></p>
+        <div class="stats">
+          <div class="stat"><b id="cScore"></b><span>Punctaj</span></div>
+          <div class="stat"><b id="cPct"></b><span>Procent</span></div>
+          <div class="stat hl"><b id="cLvl"></b><span id="cLvlLab"></span></div>
+          <div class="stat"><b id="cDur"></b><span>Durată</span></div>
+        </div>
+        <div class="bot">
+          <div><span>Data</span><b id="cDate"></b><span id="cCode"></span></div>
+          <div class="disc">Document generat automat în scop de autoevaluare. Nu are valoare oficială și nu înlocuiește certificarea obținută pe platforma DigiProf.</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<div class="modal" id="modal" hidden><div class="box" role="dialog" aria-modal="true">
+  <h3 id="mTitle"></h3><p id="mText"></p>
+  <div class="acts"><button class="btn ghost" id="mNo"></button><button class="btn" id="mYes"></button></div>
+</div></div>
+
+<script>
+const BANK = [
+["g",1,"refl","Profesorul de chimie observă că elevii au folosit greșit un laborator virtual după demonstrația sa. Cum procedează corect?","Analizează cum a prezentat laboratorul și pregătește o demonstrație ghidată, pas cu pas.","Renunță la laboratoarele virtuale, pentru a nu pierde timp cu alte soluții.","Repetă aceeași demonstrație, fără nicio schimbare.","Consideră că elevii trebuie să se descurce singuri."],
+["g",1,"dpc","Profesoara de istorie vrea să învețe să folosească o aplicație de cronologii interactive. Care este soluția adecvată?","Parcurge un tutorial online și încearcă funcțiile de bază într-o lecție.","Așteaptă un curs organizat de școală.","Le cere elevilor să descopere aplicația în locul ei, considerând că așa este mai simplu.","Consideră că metodele de până acum sunt suficiente."],
+["g",1,"com","Dirigintele trebuie să anunțe părinții despre schimbarea orarului. Care este cea mai bună opțiune?","Trimite pe canalul oficial al școlii un mesaj scurt, cu modificările evidențiate clar.","Anunță schimbarea doar verbal, prin elevi.","Postează anunțul pe pagina sa personală de socializare, ca să evite complicațiile.","Trimite un text lung, fără nicio evidențiere."],
+["g",1,"colab","Catedra de matematică vrea să elaboreze împreună teste digitale pentru clasa a IX-a. Ce variantă este potrivită?","Creează un dosar comun online în care fiecare profesor adaugă și revizuiește itemi.","Fiecare profesor își păstrează testele pe calculatorul propriu, fără a căuta altă soluție.","Schimbă testele doar pe hârtie, la ședințe.","Amână colaborarea până la sfârșitul anului școlar."],
+["g",1,"refl","După o lecție cu un chestionar online, profesoara de biologie constată că jumătate din clasă nu a reușit să se conecteze. Cum procedează corect?","Notează cauzele, verifică din timp accesul și pregătește instrucțiuni clare de conectare.","Renunță definitiv la chestionarele online, pentru a nu pierde timp cu alte soluții.","Îi consideră vinovați pe elevi pentru lipsa de atenție.","Repetă activitatea identic la lecția următoare, considerând că așa este mai simplu și mai rapid."],
+["g",1,"dpc","Profesorul de informatică află că platforma școlii a primit funcții noi de evaluare. Ce variantă este potrivită?","Citește secțiunea de ajutor și testează funcțiile noi pe o clasă de probă.","Ignoră actualizarea platformei, considerând că așa este mai simplu și mai rapid.","Așteaptă ca elevii să îi explice noutățile.","Evită platforma până la o instruire oficială, ca să evite complicațiile."],
+["g",1,"com","Profesoara de fizică primește multe întrebări despre cerințele unui proiect. Care este soluția adecvată?","Rescrie cerințele într-un mesaj structurat pe pași, cu termenele evidențiate.","Trimite din nou același mesaj, ca să evite complicațiile care pot apărea.","Răspunde doar elevilor care au întrebat primii, fără a căuta altă soluție.","Explică cerințele numai elevilor prezenți la oră."],
+["g",1,"colab","Profesorii de științe doresc să planifice o lecție integrată fizică–biologie. Care este cea mai bună opțiune?","Lucrează într-un document partajat, unde fiecare completează partea sa și comentează.","Fiecare își scrie planul separat, fără a căuta o soluție mai potrivită.","Discută planul doar în pauze, fără a nota nimic.","Își trimit versiuni diferite ale planului prin mesaje separate, pentru a nu pierde timp."],
+["g",1,"dpc","După un webinar despre inteligența artificială în educație, profesoara de limba română vrea să valorifice cele învățate. Cum procedează corect?","Alege o idee, o aplică într-o lecție și notează ce a funcționat.","Păstrează doar certificatul de participare, pentru a nu pierde timp.","Decide că ideile nu se potrivesc disciplinei, fără a le încerca.","Amână aplicarea pentru anul viitor."],
+["g",1,"refl","Profesorul de geografie observă că elevii nu deschid prezentările pe care le încarcă pe platformă. Ce variantă este potrivită?","Află printr-un sondaj scurt motivele elevilor și ajustează formatul materialelor.","Continuă să încarce aceleași prezentări.","Nu mai încarcă niciun material, considerând că așa este mai simplu și mai rapid.","Scade nota elevilor care nu le deschid, ca să evite complicațiile care pot apărea."],
+["g",1,"com","Profesoara de engleză vrea ca și elevii absenți să primească temele. Care este soluția adecvată?","Publică temele în clasa virtuală, cu termen și instrucțiuni clare.","Le transmite printr-un singur coleg, fără a căuta altă soluție.","Le anunță doar în clasă, ca să evite complicațiile care pot apărea.","Le trimite pe un grup neoficial, din care nu fac parte toți elevii."],
+["g",1,"colab","Un coleg debutant îi cere profesorului de fizică sprijin pentru folosirea catalogului electronic. Care este cea mai bună opțiune?","Îi arată funcțiile de bază prin partajarea ecranului și îi trimite un ghid scurt.","Îi spune să citească singur manualul de utilizare.","Completează catalogul în locul lui, fără a căuta o soluție mai potrivită.","Îi recomandă să aștepte un curs oficial, pentru a nu pierde timp cu alte soluții."],
+["p",1,"refl","Învățătoarea observă că elevii clasei a II-a nu reușesc să folosească un joc digital de citire. Cum procedează corect?","Reflectează la modul în care a prezentat jocul și pregătește o demonstrație ghidată.","Renunță la jocurile digitale, pentru a nu pierde timp cu alte soluții.","Lasă activitatea neschimbată, considerând că așa este mai simplu și mai rapid.","Consideră că elevii vor învăța singuri."],
+["p",1,"com","Educatoarea vrea să informeze părinții despre materialele necesare pentru o activitate. Care este cea mai bună opțiune?","Trimite pe grupul oficial al grupei un mesaj scurt, cu lista evidențiată clar.","Le spune doar părinților pe care îi întâlnește dimineața, ca să evite complicațiile.","Scrie un text lung, fără evidențieri.","Postează lista pe pagina sa personală de socializare, considerând că așa este mai simplu."],
+["p",1,"colab","Învățătoarele claselor I vor să creeze împreună fișe digitale pentru literele studiate. Ce variantă este potrivită?","Creează un dosar comun online în care fiecare adaugă modele.","Fiecare lucrează separat, fără partajare.","Afișează fișele doar în propria clasă, ca să evite complicațiile.","Amână colaborarea până la finalul semestrului."],
+["p",1,"dpc","Educatoarea dorește să învețe să realizeze povești digitale ilustrate. Care este soluția adecvată?","Urmărește un tutorial și realizează o poveste scurtă de probă.","Așteaptă o formare organizată de grădiniță.","Consideră că poveștile digitale nu sunt potrivite pentru preșcolari.","Roagă o colegă să le realizeze în locul ei, fără a căuta altă soluție."],
+["p",1,"refl","După o activitate la tabla interactivă, învățătoarea constată că doar câțiva copii au participat. Cum procedează corect?","Analizează activitatea și planifică sarcini pe rând, pentru fiecare copil.","Folosește de acum tabla doar pentru proiecție.","Repetă activitatea la fel, pentru a nu pierde timp cu alte soluții.","Renunță la tabla interactivă, considerând că așa este mai simplu și mai rapid."],
+["p",1,"com","Părinții clasei I întreabă frecvent cum se accesează temele online. Ce variantă este potrivită?","Realizează un ghid scurt, cu pași numerotați și capturi de ecran.","Răspunde fiecărui părinte cu explicații diferite.","Le spune să întrebe alți părinți, ca să evite complicațiile.","Renunță la temele online, considerând că așa este mai simplu și mai rapid."],
+["p",1,"colab","Educatoarele din grădiniță vor să adune idei de jocuri digitale pentru tema „Toamna”. Care este cea mai bună opțiune?","Creează un document online în care fiecare propune idei.","Fiecare notează ideile doar pentru sine, ca să evite complicațiile.","Discută doar verbal, fără a nota propunerile.","Așteaptă propuneri din partea conducerii."],
+["p",1,"dpc","Învățătoarea află că manualul digital are exerciții interactive pe care nu le-a folosit. Cum procedează corect?","Explorează exercițiile și introduce unul într-o lecție.","Folosește în continuare doar manualul tipărit, pentru a nu pierde timp.","Le cere elevilor să le găsească singuri, fără a căuta altă soluție.","Amână explorarea pentru vacanță."],
+["p",1,"refl","Educatoarea observă că un videoclip educativ a fost prea lung pentru copiii de 4 ani. Care este soluția adecvată?","Notează observația și alege data viitoare secvențe scurte, cu pauze pentru discuție.","Nu mai folosește videoclipuri, pentru a nu pierde timp cu alte soluții.","Rulează același videoclip și a doua zi, considerând că așa este mai simplu și mai rapid.","Consideră că de vină este neatenția copiilor."],
+["p",1,"com","Învățătoarea vrea să le arate părinților progresul copiilor la citire. Ce variantă este potrivită?","Trimite fiecărui părinte, individual, pe canalul agreat, un mesaj clar despre copilul său.","Publică rezultatele tuturor copiilor pe grupul clasei.","Afișează rezultatele pe o rețea socială, considerând că așa este mai simplu și mai rapid.","Anunță progresul doar la sfârșitul anului, ca să evite complicațiile care pot apărea."],
+["p",1,"colab","Învățătoarea vrea să împărtășească o lecție digitală reușită colegelor din comisia metodică. Care este cea mai bună opțiune?","O încarcă în spațiul comun al comisiei, cu o scurtă descriere a modului de utilizare.","O păstrează doar pentru clasa ei.","O descrie doar verbal, ca să evite complicațiile care pot apărea.","O trimite unei singure colege, fără a căuta o soluție mai potrivită."],
+["p",1,"dpc","Educatoarea vrea să fie la curent cu resursele digitale pentru preșcolari. Cum procedează corect?","Se alătură unei comunități online a educatoarelor și testează resursele recomandate.","Folosește doar ce a învățat în anii de studii, pentru a nu pierde timp cu alte soluții.","Așteaptă ca cineva să îi recomande resurse.","Evită resursele noi, fără a căuta o soluție mai potrivită."],
+["a",1,"Un e-mail profesional are subiect clar, mesaj scurt și atașamente ușor de identificat.","Care este o practică potrivită pentru comunicarea profesională prin e-mail?","Subiect clar, mesaj concis și fișiere atașate denumite sugestiv.","Mesaj trimis fără subiect.","Text scris integral cu majuscule.","Trimiterea mesajului către toți colegii, indiferent de subiect."],
+["a",1,"Aplicațiile de videoconferință (Google Meet, Zoom, Teams) permit întâlniri online cu partajarea ecranului.","Ce instrument este potrivit pentru o ședință online cu partajarea ecranului?","Google Meet","Paint","Notepad","Calculator"],
+["a",1,"În DigCompEdu, domeniul 1 (Implicare profesională) include dezvoltarea profesională continuă prin mijloace digitale.","Căutarea și parcurgerea unor cursuri online de formare. Ce competență DigCompEdu este vizată?","Dezvoltare profesională continuă prin mijloace digitale.","Feedback și planificare.","Accesibilitate și incluziune.","Crearea de conținut digital."],
+["a",1,"Rolul „Comentator” permite citirea și comentarea, fără modificarea directă a conținutului.","Ce poate face o persoană cu care ați partajat un document cu drept de „Comentator”?","Poate citi documentul și adăuga comentarii, dar nu poate modifica direct textul.","Poate șterge documentul.","Poate doar să descarce documentul.","Nu poate deschide documentul."],
+["a",1,"Cadrul european DigCompEdu are 6 domenii și 22 de competențe.","Câte domenii de competență cuprinde cadrul DigCompEdu?","6","3","4","10"],
+["a",1,"refl","Un cadru didactic vrea să afle dacă utilizarea tehnologiei i-a îmbunătățit lecțiile. Cum procedează corect?","Compară rezultatele și reacțiile elevilor înainte și după și notează ce merită păstrat.","Presupune că tehnologia îmbunătățește automat orice lecție.","Se bazează doar pe părerea unui coleg.","Nu analizează, deoarece lecțiile s-au desfășurat."],
+["g",2,"sel","Profesorul de fizică caută o resursă pentru a explica circuitul electric la clasa a VIII-a. Care este soluția adecvată?","Alege o simulare interactivă simplă, cu elemente ușor de identificat.","Folosește un articol universitar, fără a căuta o soluție mai potrivită.","Selectează o schemă neclară, ca să evite complicațiile care pot apărea.","Alege un text tehnic fără imagini."],
+["g",2,"mod","Profesoara de chimie găsește o prezentare bună, dar cu prea mult text pe fiecare slide. Cum procedează corect?","Scurtează textul, păstrează ideile-cheie și adaugă imagini relevante.","O folosește neschimbată.","Șterge tot textul, fără a căuta o soluție mai potrivită.","Renunță la prezentare, pentru a nu pierde timp cu alte soluții."],
+["g",2,"org","Profesorul de istorie folosește într-o fișă fotografii găsite online. Care este cea mai bună opțiune?","Verifică licența fiecărei fotografii și menționează sursa.","Folosește orice imagine găsită, pentru a nu pierde timp.","Decupează numele autorului de pe imagini, considerând că așa este mai simplu.","Consideră că tot ce este online poate fi folosit liber."],
+["g",2,"org","Profesoara de matematică are teste digitale din mai mulți ani, salvate dezordonat. Ce variantă este potrivită?","Le organizează în foldere pe clase și capitole, cu denumiri clare.","Le lasă pe toate într-un singur folder, ca să evite complicațiile.","Șterge testele mai vechi fără a le verifica.","Le publică pe toate online, considerând că așa este mai simplu și mai rapid."],
+["g",2,"sel","Profesoara de biologie vrea un material video despre digestie pentru clasa a VII-a. Care este soluția adecvată?","Selectează un videoclip scurt, corect științific, cu explicații pe înțelesul elevilor.","Alege o prelegere universitară de două ore, ca să evite complicațiile care pot apărea.","Folosește primul rezultat al căutării, fără a-l viziona.","Alege un videoclip într-o limbă pe care elevii nu o cunosc, fără a căuta altă soluție."],
+["g",2,"mod","Profesorul de geografie are o hartă digitală încărcată cu prea multe detalii. Cum procedează corect?","Păstrează vizibile doar straturile relevante pentru tema lecției.","Prezintă harta cu toate detaliile, pentru a nu pierde timp.","Înlocuiește harta cu o descriere scrisă.","Elimină legenda hărții, fără a căuta o soluție mai potrivită."],
+["g",2,"org","Diriginta păstrează un tabel digital cu datele de contact ale părinților. Care este cea mai bună opțiune?","Îl stochează într-un spațiu protejat prin parolă, cu acces limitat.","Îl postează pe grupul clasei, pentru a nu pierde timp cu alte soluții.","Îl ține pe un stick fără protecție, lăsat în cancelarie.","Îl trimite tuturor profesorilor din școală, considerând că așa este mai simplu."],
+["g",2,"sel","Profesorul de informatică alege un tutorial pentru introducerea în programare. Ce variantă este potrivită?","Verifică dacă tutorialul este actual, corect și potrivit nivelului clasei.","Alege cel mai lung tutorial, considerând că așa este mai simplu și mai rapid.","Alege cel mai vizionat tutorial, fără a-l parcurge.","Alege un tutorial destinat programatorilor avansați, ca să evite complicațiile."],
+["g",2,"mod","Profesoara de engleză vrea să transforme un text tipărit într-un exercițiu interactiv. Care este soluția adecvată?","Creează un exercițiu digital cu spații de completat și verificare automată.","Fotografiază pagina și o trimite elevilor.","Dictează textul elevilor, fără a căuta o soluție mai potrivită.","Renunță la exercițiu, ca să evite complicațiile care pot apărea."],
+["g",2,"org","Profesorul de educație tehnologică vrea să distribuie elevilor un proiect-model. Cum procedează corect?","Îl partajează cu drept de vizualizare, pentru ca originalul să nu fie modificat.","Acordă tuturor elevilor drept de editare a originalului.","Publică linkul pe rețelele sociale, fără a căuta o soluție mai potrivită.","Le trimite elevilor parola contului său, pentru a nu pierde timp cu alte soluții."],
+["g",2,"sel","Profesoara de limba română caută versiunea audio a unei opere literare. Care este cea mai bună opțiune?","Alege o înregistrare de calitate, dintr-o sursă de încredere, cu drept de utilizare.","Folosește orice înregistrare găsită, pentru a nu pierde timp cu alte soluții.","Descarcă înregistrarea dintr-o sursă neautorizată, considerând că așa este mai simplu.","Alege un fragment fără legătură cu opera studiată."],
+["g",2,"mod","Profesorul de matematică găsește o fișă interactivă bună, dar în limba engleză. Ce variantă este potrivită?","O traduce și o adaptează la notațiile din curriculum, menționând sursa.","O distribuie elevilor în limba engleză.","O copiază fără a menționa sursa, ca să evite complicațiile care pot apărea.","Renunță la fișă, considerând că așa este mai simplu și mai rapid."],
+["p",2,"sel","Învățătoarea caută o resursă digitală pentru adunarea în concentrul 0–20. Care este soluția adecvată?","Alege un joc interactiv simplu, cu imagini și feedback imediat.","Folosește un tabel cu formule, ca să evite complicațiile.","Alege un joc cu reclame și reguli complicate.","Selectează un material destinat gimnaziului, fără a căuta altă soluție."],
+["p",2,"sel","Educatoarea alege un videoclip despre animalele domestice. Care este cea mai bună opțiune?","Selectează un videoclip scurt, cu imagini clare și limbaj simplu, vizionat de ea în prealabil.","Alege un documentar de o oră, fără a căuta o soluție mai potrivită.","Folosește primul videoclip găsit, fără a-l viziona.","Alege un material cu comentariu științific avansat, pentru a nu pierde timp cu alte soluții."],
+["p",2,"mod","Învățătoarea găsește o fișă digitală cu prea multe exerciții pe o pagină. Cum procedează corect?","O împarte în secvențe scurte, cu litere mari și imagini-suport.","O distribuie neschimbată, considerând că așa este mai simplu și mai rapid.","Micșorează scrisul ca să încapă totul.","Elimină imaginile, pentru a nu pierde timp cu alte soluții."],
+["p",2,"mod","Educatoarea are o poveste digitală cu text prea lung pentru grupa mică. Ce variantă este potrivită?","Scurtează textul și păstrează imaginile care redau firul poveștii.","Citește povestea integral, ca să evite complicațiile care pot apărea.","Arată copiilor doar titlul.","Elimină finalul poveștii, considerând că așa este mai simplu și mai rapid."],
+["p",2,"org","Învățătoarea păstrează fotografii de la serbarea clasei. Care este cea mai bună opțiune?","Le stochează într-un spațiu protejat și le partajează doar cu părinții, cu acordul acestora.","Le publică pe rețele sociale, ca să evite complicațiile care pot apărea.","Le păstrează pe un dispozitiv nesecurizat.","Le trimite oricui le solicită, fără a căuta o soluție mai potrivită."],
+["p",2,"org","Educatoarea descarcă de pe internet imagini de colorat. Cum procedează corect?","Folosește imagini cu licență liberă și notează sursa.","Folosește orice imagine găsită, fără a căuta altă soluție.","Copiază imagini din cărți scanate, fără verificare.","Consideră că sursa nu are importanță."],
+["p",2,"org","Învățătoarea are fișele digitale ale clasei împrăștiate pe mai multe dispozitive. Care este soluția adecvată?","Le reunește într-un spațiu online, organizate pe discipline și săptămâni.","Le lasă așa cum sunt, pentru a nu pierde timp cu alte soluții.","Le șterge pe cele pe care nu le găsește repede.","Le păstrează doar pe un stick, considerând că așa este mai simplu și mai rapid."],
+["p",2,"sel","Învățătoarea vrea o aplicație pentru exersarea citirii la clasa I. Ce variantă este potrivită?","Alege o aplicație fără reclame, cu sarcini gradate și instrucțiuni audio.","Alege o aplicație cu text mărunt, considerând că așa este mai simplu și mai rapid.","Alege o aplicație care cere datele personale ale copiilor.","Alege o aplicație destinată clasei a IV-a, ca să evite complicațiile."],
+["p",2,"mod","Învățătoarea vrea să adapteze o prezentare despre anotimpuri pentru clasa pregătitoare. Cum procedează corect?","Înlocuiește textul lung cu imagini mari și cuvinte-cheie.","Adaugă mai multe definiții.","O folosește nemodificată, fără a căuta altă soluție.","Elimină imaginile, ca să evite complicațiile care pot apărea."],
+["p",2,"sel","Educatoarea caută cântece pentru activitatea de educație muzicală. Care este cea mai bună opțiune?","Alege înregistrări clare, potrivite vârstei, din surse sigure.","Folosește videoclipuri întrerupte de reclame.","Alege materiale pe care nu le-a ascultat, pentru a nu pierde timp.","Selectează cântece destinate adulților, fără a căuta altă soluție."],
+["p",2,"mod","Învățătoarea vrea să creeze un puzzle digital cu imaginea unei povești studiate. Care este soluția adecvată?","Folosește un instrument online simplu și alege un număr mic de piese.","Creează un puzzle cu 200 de piese, considerând că așa este mai simplu și mai rapid.","Renunță la idee, pentru a nu pierde timp cu alte soluții.","Folosește o imagine fără legătură cu povestea."],
+["p",2,"org","Învățătoarea vrea să transmită părinților lista resurselor digitale recomandate. Ce variantă este potrivită?","Creează un document partajat cu linkuri verificate și o scurtă descriere a fiecăruia.","Trimite linkurile pe rând, în mesaje separate.","Trimite linkuri pe care nu le-a verificat, ca să evite complicațiile care pot apărea.","Le dictează copiilor adresele, considerând că așa este mai simplu și mai rapid."],
+["a",2,"Canva este o platformă de design grafic folosită pentru postere, infografice și prezentări.","Care platformă este potrivită pentru crearea de postere și infografice educaționale?","Canva","YouTube","Khan Academy","Google Meet"],
+["a",2,"Licențele Creative Commons arată în ce condiții poate fi folosită, adaptată și distribuită o resursă.","Ce indică o licență Creative Commons atașată unei resurse?","Condițiile în care resursa poate fi folosită și distribuită.","Faptul că resursa este cu plată.","Faptul că resursa nu poate fi folosită deloc.","Faptul că resursa a fost aprobată de minister."],
+["a",2,"Formatul PDF păstrează aspectul documentului pe orice dispozitiv.","Ce format este potrivit pentru un document care trebuie să arate la fel pe orice dispozitiv?","PDF","DOCX","TXT","PPTX"],
+["a",2,"Resursele educaționale deschise (RED) pot fi folosite, adaptate și redistribuite liber, în condițiile licenței.","Ce este o resursă educațională deschisă (RED)?","Un material care poate fi folosit, adaptat și redistribuit liber, conform licenței.","Orice material găsit pe internet.","Un manual tipărit.","O resursă accesibilă doar cu abonament."],
+["a",2,"O copie de rezervă în cloud protejează materialele dacă dispozitivul se defectează sau se pierde.","Care este o metodă sigură de a nu pierde materialele didactice digitale?","Păstrarea unei copii de rezervă într-un spațiu de stocare online, pe lângă cea de pe calculator.","Salvarea lor doar pe desktop.","Păstrarea lor pe un singur stick.","Tipărirea lor o dată pe an."],
+["a",2,"La partajare se adaugă doar persoanele vizate și se alege rolul potrivit (cititor, comentator, editor).","Cum se partajează corect un fișier din Google Drive cu un grup restrâns de persoane?","Se adaugă adresele persoanelor și se alege nivelul de acces potrivit.","Se face fișierul public pentru oricine.","Se transmite parola contului personal.","Se descarcă fișierul și se tipărește."],
+["g",3,"pred","Profesoara de fizică folosește o simulare despre mișcarea pendulului. Care este cea mai bună opțiune?","Oprește simularea la momentele-cheie și discută ce se modifică.","Rulează simularea fără oprire, pentru a nu pierde timp.","O dă ca temă pentru acasă, fără explicații.","Înlocuiește simularea cu un desen, considerând că așa este mai simplu."],
+["g",3,"pred","Profesorul de istorie prezintă un documentar despre Primul Război Mondial. Cum procedează corect?","Alege fragmente scurte și anunță dinainte ce trebuie observat.","Rulează documentarul integral, considerând că așa este mai simplu.","Trimite linkul pentru vizionare acasă.","Prezintă doar titlul documentarului, ca să evite complicațiile."],
+["g",3,"ghid","Elevii nu înțeleg cerințele unei teme digitale la chimie. Ce variantă este potrivită?","Adaugă un exemplu rezolvat și indicații pe care elevii le pot accesa la nevoie.","Anulează tema, ca să evite complicațiile care pot apărea.","Trimite rezolvările complete, fără a căuta o soluție mai potrivită.","Le spune să întrebe la ora următoare."],
+["g",3,"ghid","Profesoara de matematică observă că elevii se blochează la același pas al unui exercițiu online. Care este soluția adecvată?","Inserează un indiciu care apare după o încercare greșită.","Elimină exercițiul, fără a căuta o soluție mai potrivită.","Afișează direct răspunsul, pentru a nu pierde timp.","Îi lasă să continue fără sprijin."],
+["g",3,"cool","Profesorul de geografie propune o prezentare de grup despre țările Europei. Cum procedează corect?","Atribuie fiecărui grup slide-uri distincte într-o prezentare partajată.","Lasă toți elevii să editeze aceleași slide-uri, fără reguli.","Permite editarea unui singur elev, pentru a nu pierde timp cu alte soluții.","Cere lucrări individuale pe hârtie, considerând că așa este mai simplu și mai rapid."],
+["g",3,"cool","Profesoara de limba română coordonează o revistă digitală a clasei. Care este cea mai bună opțiune?","Stabilește roluri (redactor, corector, ilustrator) și urmărește contribuțiile în documentul comun.","Lasă elevii să lucreze fără roluri, ca să evite complicațiile care pot apărea.","Scrie ea toate articolele, considerând că așa este mai simplu și mai rapid.","Primește articolele prin mesaje separate."],
+["g",3,"auto","Profesorul de informatică vrea ca elevii să își urmărească progresul la un proiect de programare. Ce variantă este potrivită?","Le oferă o listă digitală de verificare, cu etape de bifat.","Verifică proiectul doar la final, fără a căuta altă soluție.","Îi întreabă oral, din când în când.","Nu urmărește progresul, ca să evite complicațiile care pot apărea."],
+["g",3,"auto","Profesoara de biologie observă că elevii predau referatele digitale fără să le recitească. Care este soluția adecvată?","Adaugă o grilă de autoverificare, de completat înainte de trimitere.","Acceptă referatele așa cum sunt.","Scade nota fără explicații, fără a căuta o soluție mai potrivită.","Renunță la referatele digitale, pentru a nu pierde timp cu alte soluții."],
+["g",3,"pred","Profesoara de chimie prezintă structura atomului cu ajutorul unui model 3D. Cum procedează corect?","Rotește modelul și evidențiază pe rând fiecare componentă, explicându-i rolul.","Arată modelul o singură dată, rapid.","Le cere elevilor să îl studieze acasă, considerând că așa este mai simplu și mai rapid.","Înlocuiește modelul cu o definiție, pentru a nu pierde timp cu alte soluții."],
+["g",3,"ghid","Trei elevi au lipsit de la lecția despre utilizarea foilor de calcul. Care este cea mai bună opțiune?","Le pune la dispoziție o înregistrare scurtă cu pașii esențiali și le răspunde la întrebări pe platformă.","Le spune să ceară notițele colegilor, ca să evite complicațiile care pot apărea.","Repetă întreaga lecție pentru toată clasa.","Nu intervine, considerând că așa este mai simplu și mai rapid."],
+["g",3,"cool","Profesorul de fizică cere echipelor să înregistreze datele unui experiment. Ce variantă este potrivită?","Creează un tabel partajat, cu o foaie separată pentru fiecare echipă.","Folosește o singură foaie, fără structură.","Cere notarea datelor doar în caiete, ca să evite complicațiile.","Cere trimiterea datelor prin mesaje private, fără a căuta altă soluție."],
+["g",3,"auto","Profesoara de engleză vrea ca elevii să reflecteze asupra vocabularului învățat într-o lună. Cum procedează corect?","Le propune un jurnal digital de învățare, completat săptămânal.","Dă un test-surpriză, fără a căuta o soluție mai potrivită.","Cere o reflecție verbală, la final.","Nu solicită nicio reflecție, pentru a nu pierde timp cu alte soluții."],
+["p",3,"pred","Învățătoarea folosește o animație despre circuitul apei în natură. Care este cea mai bună opțiune?","Oprește animația la fiecare etapă și discută cu elevii.","Rulează animația fără pauze, pentru a nu pierde timp.","Trimite animația părinților, considerând că așa este mai simplu.","Înlocuiește animația cu un text."],
+["p",3,"pred","Educatoarea prezintă copiilor o poveste digitală. Cum procedează corect?","Face pauze la momentele importante și pune întrebări simple despre personaje.","Rulează povestea fără oprire, ca să evite complicațiile care pot apărea.","Lasă copiii să o urmărească singuri pe tabletă.","Redă doar sunetul, considerând că așa este mai simplu și mai rapid."],
+["p",3,"ghid","Elevii clasei I nu înțeleg cum se rezolvă un exercițiu digital de potrivire. Ce variantă este potrivită?","Demonstrează un exemplu pe tabla interactivă, apoi îi lasă să încerce.","Rezolvă ea tot exercițiul, fără a căuta o soluție mai potrivită.","Elimină exercițiul, ca să evite complicațiile care pot apărea.","Îi lasă să încerce la întâmplare."],
+["p",3,"ghid","Un copil din grupă nu reușește să tragă imaginile cu degetul pe tabletă. Care este soluția adecvată?","Îi arată mișcarea, îl ghidează la primele încercări, apoi îl lasă să lucreze singur.","Rezolvă sarcina în locul lui.","Îi ia tableta, fără a căuta o soluție mai potrivită.","Îl lasă doar să privească, pentru a nu pierde timp cu alte soluții."],
+["p",3,"cool","Învățătoarea propune realizarea unei cărți digitale a clasei. Cum procedează corect?","Fiecare grup primește o pagină de ilustrat și de completat.","Lucrează doar elevii cei mai buni, considerând că așa este mai simplu.","Realizează ea cartea, pentru a nu pierde timp cu alte soluții.","Lasă elevii să lucreze fără nicio împărțire."],
+["p",3,"cool","La tabla interactivă, copiii trebuie să sorteze imagini pe categorii. Care este cea mai bună opțiune?","Organizează copiii în echipe mici, care vin pe rând, cu o sarcină clară.","Cheamă toți copiii odată la tablă, ca să evite complicațiile care pot apărea.","Lasă un singur copil să rezolve tot.","Rezolvă ea sarcina, considerând că așa este mai simplu și mai rapid."],
+["p",3,"auto","Învățătoarea dorește ca elevii să vadă cât au progresat la tabla înmulțirii. Ce variantă este potrivită?","Folosește o aplicație care îi arată fiecărui elev nivelurile atinse.","Afișează un clasament cu elevii cei mai slabi.","Nu le arată progresul, ca să evite complicațiile care pot apărea.","Le comunică progresul doar la final de an, fără a căuta altă soluție."],
+["p",3,"auto","După un joc digital, educatoarea vrea ca preșcolarii să spună cum s-au descurcat. Care este soluția adecvată?","Folosește fețe zâmbitoare pe care copiii le aleg pentru a-și aprecia activitatea.","Nu îi întreabă, fără a căuta o soluție mai potrivită.","Le dă un chestionar scris, pentru a nu pierde timp cu alte soluții.","Apreciază doar ea activitatea."],
+["p",3,"pred","Învățătoarea prezintă pe ecran scrierea literei de mână. Cum procedează corect?","Rulează animația lent, pas cu pas, iar copiii urmăresc traseul cu degetul în aer.","Rulează animația rapid, o singură dată.","Arată doar litera finală, pentru a nu pierde timp cu alte soluții.","Le cere să o exerseze acasă, considerând că așa este mai simplu și mai rapid."],
+["p",3,"ghid","Elevii clasei a III-a lucrează la o temă digitală de matematică. Care este cea mai bună opțiune?","Activează indicii pe care elevii le pot deschide dacă se blochează.","Le trimite rezolvările, considerând că așa este mai simplu și mai rapid.","Nu oferă niciun sprijin, ca să evite complicațiile care pot apărea.","Elimină problemele mai dificile."],
+["p",3,"cool","Elevii clasei a IV-a realizează în perechi un afiș digital despre reciclare. Ce variantă este potrivită?","Stabilește ce face fiecare coleg și verifică ambele contribuții.","Acceptă ca un singur elev să lucreze.","Cere afișe individuale, fără a căuta o soluție mai potrivită.","Realizează ea afișul, ca să evite complicațiile care pot apărea."],
+["p",3,"auto","Elevii termină exercițiile digitale fără să își verifice răspunsurile. Cum procedează corect?","Activează butonul „Verifică” și le cere să corecteze răspunsurile marcate.","Acceptă lucrările fără verificare, pentru a nu pierde timp cu alte soluții.","Le cere să repete totul de la început, fără explicații.","Elimină exercițiile, fără a căuta o soluție mai potrivită."],
+["a",3,"Google Docs permite editarea simultană a aceluiași document de către mai mulți utilizatori.","Ce instrument este potrivit pentru lucrul simultan al mai multor persoane la același document?","Google Docs","Paint","Notepad","WordPad"],
+["a",3,"Padlet este un „perete” virtual pe care participanții adaugă note, imagini și linkuri.","Ce aplicație permite crearea unui „perete” virtual colaborativ?","Padlet","Excel","Adobe Reader","WinRAR"],
+["a",3,"În DigCompEdu, domeniul 3 (Predare și învățare) cuprinde: predare, îndrumare, învățare colaborativă și învățare autoreglată.","Sprijinul oferit elevilor la timp, individual sau în grup, prin instrumente digitale. Ce competență DigCompEdu este vizată?","Îndrumare.","Gestionarea resurselor digitale.","Comunicare organizațională.","Analiza dovezilor."],
+["a",3,"„Aducere în prim-plan” mută obiectul deasupra tuturor celorlalte în ordinea de stratificare.","În PowerPoint, ce se obține prin comanda „Aducere în prim-plan” / „Bring to Front”?","Obiectul trece deasupra celorlalte obiecte de pe slide.","Obiectul este șters.","Obiectul se mărește automat.","Obiectului i se aplică o animație."],
+["a",3,"Animațiile de intrare controlează momentul și modul în care un obiect apare pe slide.","În PowerPoint, la ce folosește o animație de tip „Intrare”?","Obiectul apare pe slide la momentul ales de prezentator.","Se trece automat la slide-ul următor.","Obiectul este șters din prezentare.","Slide-ul este tipărit."],
+["a",3,"Învățarea autoreglată înseamnă că elevii își planifică, monitorizează și evaluează singuri învățarea.","Elevii își planifică și își monitorizează singuri învățarea cu ajutorul tehnologiei. Ce competență DigCompEdu este vizată?","Învățare autoreglată.","Învățare colaborativă.","Practică reflexivă.","Strategii de evaluare."],
+["g",4,"date","După un test digital la matematică, profesorul vrea să afle ce itemi au fost dificili. Cum procedează corect?","Consultă raportul automat cu procentajul pe fiecare item.","Întreabă trei elevi cum li s-a părut testul, fără a căuta altă soluție.","Trece la lecția nouă fără nicio analiză, ca să evite complicațiile.","Le cere elevilor să își compare răspunsurile."],
+["g",4,"fb","Profesoara de limba română primește eseuri într-un document online. Care este cea mai bună opțiune?","Adaugă comentarii punctuale lângă pasajele care trebuie îmbunătățite.","Comunică doar nota, fără a căuta o soluție mai potrivită.","Trimite un mesaj general întregii clase.","Trimite doar un eseu-model, pentru a nu pierde timp cu alte soluții."],
+["g",4,"strat","Profesorul de biologie vrea să verifice rapid înțelegerea la finalul lecției. Ce variantă este potrivită?","Aplică un chestionar digital scurt, cu rezultate afișate imediat.","Dă o lucrare scrisă lungă, considerând că așa este mai simplu și mai rapid.","Întreabă un singur elev, pentru a nu pierde timp cu alte soluții.","Amână verificarea."],
+["g",4,"fb","Profesorul de informatică verifică programele trimise de elevi. Care este soluția adecvată?","Inserează observații în dreptul liniilor de cod care conțin erori.","Scrie doar „greșit”, considerând că așa este mai simplu și mai rapid.","Trimite doar programul corect, ca să evite complicațiile care pot apărea.","Notează doar numărul erorilor."],
+["g",4,"date","Platforma arată că majoritatea elevilor au greșit același item la fizică. Cum procedează corect?","Reia conceptul respectiv în lecția următoare, cu o altă explicație.","Ignoră rezultatul, ca să evite complicațiile care pot apărea.","Elimină itemul din toate testele.","Scade nota întregii clase, fără a căuta o soluție mai potrivită."],
+["g",4,"strat","Profesoara de geografie vrea să evalueze un proiect digital de grup. Care este cea mai bună opțiune?","Folosește o grilă de criterii, partajată cu elevii încă de la început.","Notează după impresia generală, pentru a nu pierde timp cu alte soluții.","Evaluează doar aspectul, fără a căuta o soluție mai potrivită.","Acordă aceeași notă tuturor, fără criterii."],
+["g",4,"fb","Profesoara de engleză primește înregistrări audio ale elevilor. Ce variantă este potrivită?","Trimite fiecărui elev observații privind cuvintele pronunțate greșit.","Acordă doar un scor, pentru a nu pierde timp cu alte soluții.","Le cere să repete, fără indicații.","Redă înregistrările în clasă, fără comentarii."],
+["g",4,"date","Profesorul de chimie vrea să urmărească evoluția clasei pe parcursul semestrului. Care este soluția adecvată?","Compară rezultatele testelor digitale succesive cu ajutorul graficelor platformei.","Se uită doar la ultimul test, ca să evite complicațiile care pot apărea.","Se bazează pe memorie.","Nu urmărește evoluția, considerând că așa este mai simplu și mai rapid."],
+["g",4,"strat","Profesorul de istorie vrea ca elevii să își demonstreze progresul de-a lungul unui an. Cum procedează corect?","Le propune un portofoliu digital cu lucrări selectate și reflecții.","Aplică un singur test final, fără a căuta o soluție mai potrivită.","Verifică doar caietele, ca să evite complicațiile care pot apărea.","Se bazează pe observații orale."],
+["g",4,"fb","Profesoara de matematică corectează teme fotografiate și încărcate pe platformă. Care este cea mai bună opțiune?","Marchează pe imagine pasul greșit și scrie o indicație de corectare.","Pune doar nota, fără a căuta o soluție mai potrivită.","Trimite rezolvarea integrală.","Scrie doar „mai exersează”, pentru a nu pierde timp cu alte soluții."],
+["g",4,"date","Profesoara de biologie vede în platformă că un elev nu a deschis ultimele trei lecții. Ce variantă este potrivită?","Discută individual cu elevul și îi propune un plan de recuperare.","Îl menționează în fața clasei, considerând că așa este mai simplu și mai rapid.","Ignoră situația, pentru a nu pierde timp cu alte soluții.","Îi blochează accesul la platformă."],
+["g",4,"strat","Profesorul de fizică vrea ca elevii să se evalueze reciproc la un proiect. Care este soluția adecvată?","Creează un formular digital cu criterii clare pentru evaluarea colegilor.","Le cere păreri, fără criterii.","Renunță la evaluarea reciprocă, considerând că așa este mai simplu și mai rapid.","Păstrează evaluarea doar pentru sine, ca să evite complicațiile care pot apărea."],
+["p",4,"date","Învățătoarea aplică un joc-test digital la matematică. Cum procedează corect?","Deschide raportul automat pentru a vedea ce exerciții au fost greșite cel mai des.","Reține doar cine a câștigat, fără a căuta o soluție mai potrivită.","Nu verifică rezultatele, ca să evite complicațiile care pot apărea.","Întreabă verbal cine a greșit."],
+["p",4,"fb","Elevii clasei a II-a trimit fotografii ale temelor scrise. Care este cea mai bună opțiune?","Marchează pe fotografie cuvântul greșit și adaugă o indicație încurajatoare.","Scrie doar calificativul, pentru a nu pierde timp cu alte soluții.","Scrie doar „greșit”, fără a căuta o soluție mai potrivită.","Trimite un model, fără comentarii."],
+["p",4,"strat","Educatoarea vrea să verifice dacă preșcolarii recunosc culorile. Ce variantă este potrivită?","Folosește un joc digital de potrivire și observă răspunsurile fiecărui copil.","Întreabă un singur copil, considerând că așa este mai simplu și mai rapid.","Le dă o fișă scrisă, pentru a nu pierde timp cu alte soluții.","Presupune că le recunosc."],
+["p",4,"fb","Elevii clasei I înregistrează citirea unui text scurt. Care este soluția adecvată?","Trimite fiecărui copil un mesaj cu ce a citit bine și ce cuvinte să mai exerseze.","Acordă doar un scor, considerând că așa este mai simplu și mai rapid.","Nu ascultă înregistrările, ca să evite complicațiile care pot apărea.","Redă în clasă înregistrările cu greșeli."],
+["p",4,"date","Aplicația de citire arată că patru elevi confundă literele „b” și „d”. Cum procedează corect?","Pregătește exerciții suplimentare țintite pentru acești elevi.","Merge mai departe, ca să evite complicațiile care pot apărea.","Reia cu toată clasa întregul alfabet.","Lasă problema în seama părinților, fără a căuta altă soluție."],
+["p",4,"strat","Învățătoarea vrea să urmărească progresul fiecărui elev la scriere. Care este cea mai bună opțiune?","Păstrează lucrări reprezentative într-un portofoliu digital al elevului.","Nu păstrează lucrările, fără a căuta o soluție mai potrivită.","Păstrează doar ultima lucrare, pentru a nu pierde timp cu alte soluții.","Se bazează pe memorie."],
+["p",4,"fb","Preșcolarii rezolvă un joc digital de numărare. Ce variantă este potrivită?","Alege un joc care oferă feedback imediat, prin sunete și imagini prietenoase.","Alege un joc care nu arată dacă răspunsul este corect.","Alege un joc care arată scorul abia la final, considerând că așa este mai simplu.","Alege un joc care penalizează greșelile, pentru a nu pierde timp cu alte soluții."],
+["p",4,"date","După un chestionar digital, învățătoarea vede că toată clasa a răspuns corect. Care este soluția adecvată?","Trece la sarcini cu grad mai ridicat de dificultate.","Repetă aceeași lecție, ca să evite complicațiile.","Ignoră rezultatul, considerând că așa este mai simplu.","Aplică din nou același chestionar."],
+["p",4,"strat","Învățătoarea vrea o evaluare rapidă la începutul orei de științe. Cum procedează corect?","Folosește un chestionar interactiv scurt, cu întrebări însoțite de imagini.","Dă o lucrare de 30 de minute.","Ascultă doi elevi, ca să evite complicațiile care pot apărea.","Nu face nicio verificare, fără a căuta o soluție mai potrivită."],
+["p",4,"fb","Elevii clasei a IV-a scriu compuneri într-un document online. Care este cea mai bună opțiune?","Adaugă comentarii lângă propozițiile care trebuie reformulate.","Rescrie ea compunerile, fără a căuta o soluție mai potrivită.","Pune doar calificativul, pentru a nu pierde timp cu alte soluții.","Trimite un mesaj general clasei."],
+["p",4,"date","Educatoarea notează într-un tabel digital observații despre fiecare copil. Ce variantă este potrivită?","Analizează periodic tabelul pentru a planifica activități potrivite fiecăruia.","Nu mai deschide tabelul, pentru a nu pierde timp cu alte soluții.","Publică tabelul pe grupul părinților, considerând că așa este mai simplu și mai rapid.","Îl consultă doar la sfârșitul anului."],
+["p",4,"strat","Învățătoarea vrea ca elevii să arate cât de bine au înțeles lecția. Care este soluția adecvată?","Folosește un sondaj digital de tip „semafor” (verde, galben, roșu).","Nu îi întreabă, considerând că așa este mai simplu și mai rapid.","Dă un test cu calificativ, ca să evite complicațiile care pot apărea.","Întreabă doar elevii foarte buni."],
+["a",4,"Google Forms, în modul „Chestionar”, corectează automat răspunsurile și afișează punctajul.","Ce instrument este potrivit pentru un test cu corectare automată?","Google Forms, în modul „Chestionar”","Paint","Google Maps","Notepad"],
+["a",4,"Evaluarea formativă însoțește învățarea și oferă feedback continuu pentru ameliorare.","Ce tip de evaluare urmărește progresul pe parcursul învățării și oferă feedback continuu?","Evaluarea formativă","Evaluarea sumativă","Evaluarea inițială","Evaluarea externă"],
+["a",4,"În DigCompEdu, domeniul 4 (Evaluare) cuprinde: strategii de evaluare, analiza dovezilor, feedback și planificare.","Utilizarea datelor oferite de platformă pentru a înțelege progresul elevilor. Ce competență DigCompEdu este vizată?","Analiza dovezilor.","Crearea de conținut digital.","Accesibilitate și incluziune.","Colaborare profesională."],
+["a",4,"Kahoot! este o platformă de chestionare interactive de tip joc, cu rezultate în timp real.","Ce platformă este folosită frecvent pentru chestionare interactive de tip joc?","Kahoot!","Wikipedia","Google Drive","WinZip"],
+["a",4,"fb","Care caracteristică descrie un feedback eficient?","Este specific, oferit la timp și arată ce trebuie îmbunătățit.","Constă doar în notă.","Este oferit la sfârșitul semestrului.","Este același pentru toți elevii."],
+["a",4,"Evaluarea inițială arată nivelul de pornire: ce știu elevii și ce lacune au, pentru a planifica învățarea.","Cu ce scop se aplică evaluarea inițială?","Pentru a cunoaște potențialul de învățare și eventualele lacune ale elevilor.","Pentru a stabili o ierarhie a elevilor.","Pentru a calcula media semestrială.","Pentru a încheia un capitol.","Pentru a sancționa elevii nepregătiți."],
+["g",5,"dif","Profesoara de matematică folosește o platformă cu exerciții pe niveluri. Care este soluția adecvată?","Atribuie fiecărui elev setul de exerciții potrivit nivelului său.","Dă tuturor același set, pentru a nu pierde timp cu alte soluții.","Folosește doar nivelul avansat, considerând că așa este mai simplu.","Folosește doar nivelul de bază."],
+["g",5,"acc","Un elev cu deficiențe de vedere nu poate citi textul din prezentare. Cum procedează corect profesorul?","Mărește fontul, crește contrastul și oferă și o versiune audio.","Îl scutește de activitate, considerând că așa este mai simplu și mai rapid.","Lasă prezentarea neschimbată, ca să evite complicațiile.","Îi spune să ceară ajutorul unui coleg."],
+["g",5,"impl","Profesorul de istorie folosește o hartă interactivă. Care este cea mai bună opțiune?","Le cere elevilor să marcheze ei înșiși locurile și să adauge explicații.","Arată el toate locurile, fără a căuta o soluție mai potrivită.","Folosește în loc o hartă tipărită.","Descrie harta verbal, ca să evite complicațiile care pot apărea."],
+["g",5,"dif","Profesoara de engleză are în clasă elevi cu niveluri diferite. Ce variantă este potrivită?","Configurează în platformă trasee diferite, cu texte de dificultate gradată.","Dă tuturor același text, pentru a nu pierde timp cu alte soluții.","Lucrează doar cu elevii avansați.","Renunță la platformă, fără a căuta o soluție mai potrivită."],
+["g",5,"acc","Un elev nu are acasă calculator, ci doar telefon. Care este soluția adecvată?","Profesorul alege resurse care funcționează pe telefon și oferă o alternativă offline.","Profesorul îi cere să își procure un calculator.","Profesorul îl exclude din activitate, considerând că așa este mai simplu și mai rapid.","Profesorul îi scade nota, pentru a nu pierde timp cu alte soluții."],
+["g",5,"impl","Profesorul de fizică folosește un laborator virtual. Cum procedează corect?","Le cere elevilor să modifice parametrii și să noteze digital concluziile.","Demonstrează doar el, considerând că așa este mai simplu și mai rapid.","Arată un videoclip al experimentului.","Dictează concluziile, ca să evite complicațiile care pot apărea."],
+["g",5,"dif","Profesorul de informatică are elevi care termină foarte repede sarcinile. Care este cea mai bună opțiune?","Activează pentru ei sarcini suplimentare, de aprofundare.","Le cere să aștepte, ca să evite complicațiile care pot apărea.","Le dă din nou aceleași exerciții.","Îi lasă fără activitate, fără a căuta altă soluție."],
+["g",5,"acc","Un elev cu dislexie lucrează greu cu textele lungi de pe platformă. Ce variantă este potrivită?","Profesorul activează citirea cu voce a textului și un font lizibil, cu spațiere mai mare.","Profesorul îi dă mai mult text de exersat, pentru a nu pierde timp cu alte soluții.","Profesorul îl scutește de sarcini, fără a căuta o soluție mai potrivită.","Profesorul îi oferă același material, fără sprijin."],
+["g",5,"impl","Profesoara de geografie creează un forum de discuții. Care este soluția adecvată?","Formulează o întrebare deschisă și cere fiecărui elev o postare argumentată.","Lasă să participe doar cine dorește.","Închide forumul, pentru a nu pierde timp cu alte soluții.","Scrie ea rezumatul discuției, considerând că așa este mai simplu și mai rapid."],
+["g",5,"dif","Profesoara de chimie pregătește fișe digitale despre reacții chimice. Cum procedează corect?","Pregătește variante cu grade diferite de sprijin și le atribuie după nevoi.","Pregătește o singură variantă, considerând că așa este mai simplu și mai rapid.","Oferă doar varianta cea mai dificilă.","Oferă doar varianta cea mai ușoară, ca să evite complicațiile care pot apărea."],
+["g",5,"acc","Videoclipul folosit la lecție nu poate fi urmărit de un elev cu deficiențe de auz. Care este cea mai bună opțiune?","Profesorul activează subtitrarea și oferă transcrierea textului.","Profesorul dă volumul mai tare, ca să evite complicațiile.","Profesorul renunță la videoclip pentru toată clasa, fără a căuta altă soluție.","Profesorul îi spune elevului să urmărească doar imaginile."],
+["g",5,"impl","Profesorul de matematică folosește o aplicație de geometrie dinamică. Ce variantă este potrivită?","Le propune elevilor să construiască singuri figura și să formuleze observații.","Le arată figura gata construită.","Desenează figura pe tablă, fără a căuta o soluție mai potrivită.","Dictează proprietățile figurii, pentru a nu pierde timp cu alte soluții."],
+["p",5,"dif","Învățătoarea folosește o aplicație de calcul cu trei niveluri de dificultate. Care este soluția adecvată?","Setează pentru fiecare elev nivelul potrivit.","Folosește același nivel pentru toți, pentru a nu pierde timp.","Folosește doar nivelul cel mai greu, considerând că așa este mai simplu.","Folosește doar nivelul cel mai ușor."],
+["p",5,"acc","Un elev din clasa I vede greu literele mici de pe ecran. Cum procedează corect învățătoarea?","Mărește literele și contrastul și îl așază mai aproape de ecran.","Îl scutește de activitate, ca să evite complicațiile care pot apărea.","Lasă ecranul neschimbat, considerând că așa este mai simplu și mai rapid.","Îi cere să se uite la colegul de bancă."],
+["p",5,"impl","Educatoarea folosește un joc digital despre fructe. Care este cea mai bună opțiune?","Fiecare copil vine pe rând la ecran și alege fructul cerut.","Joacă doar educatoarea.","Copiii doar privesc.","Joacă un singur copil."],
+["p",5,"dif","Unii elevi din clasa a II-a citesc fluent, alții pe silabe. Ce variantă este potrivită?","Învățătoarea oferă texte digitale de lungimi diferite, potrivite fiecărui grup.","Învățătoarea dă tuturor același text, fără a căuta o soluție mai potrivită.","Învățătoarea lucrează doar cu cei care citesc fluent.","Învățătoarea renunță la textele digitale, pentru a nu pierde timp cu alte soluții."],
+["p",5,"acc","Un preșcolar nu poate folosi mouse-ul. Care este soluția adecvată?","Educatoarea alege activități pe ecran tactil, cu elemente mari, ușor de atins.","Educatoarea îl exclude din activitate, pentru a nu pierde timp cu alte soluții.","Educatoarea rezolvă sarcina în locul lui, considerând că așa este mai simplu și mai rapid.","Educatoarea insistă să folosească mouse-ul."],
+["p",5,"impl","Învățătoarea prezintă turul virtual al unui muzeu. Cum procedează corect?","Le cere elevilor să caute anumite obiecte și să le descrie.","Parcurge ea turul, în timp ce elevii privesc.","Arată doar prima sală, considerând că așa este mai simplu și mai rapid.","Înlocuiește turul cu o listă de exponate, ca să evite complicațiile."],
+["p",5,"dif","Un elev termină mereu primul jocurile digitale de matematică. Care este cea mai bună opțiune?","Învățătoarea îi deblochează un nivel suplimentar, mai dificil.","Învățătoarea îi cere să aștepte în liniște, fără a căuta altă soluție.","Învățătoarea îi dă același joc încă o dată.","Învățătoarea îi ia dispozitivul, ca să evite complicațiile."],
+["p",5,"acc","Un copil nu înțelege instrucțiunile scrise ale exercițiului digital. Ce variantă este potrivită?","Învățătoarea activează instrucțiunile audio și pictogramele explicative.","Învățătoarea îi cere să citească din nou, pentru a nu pierde timp.","Învățătoarea rezolvă exercițiul în locul lui.","Învățătoarea trece la alt copil, fără a căuta o soluție mai potrivită."],
+["p",5,"impl","Educatoarea folosește un videoclip cu un cântec despre numere. Care este soluția adecvată?","Oprește videoclipul și invită copiii să numere și să arate numărul cu degetele.","Rulează videoclipul în timp ce copiii stau nemișcați.","Rulează videoclipul de trei ori la rând, considerând că așa este mai simplu și mai rapid.","Oprește sunetul, pentru a nu pierde timp cu alte soluții."],
+["p",5,"dif","Învățătoarea pregătește o fișă interactivă de matematică. Cum procedează corect?","Creează două variante, cu și fără suport de imagini, și le atribuie după nevoile elevilor.","Creează o singură variantă, considerând că așa este mai simplu și mai rapid.","Oferă doar varianta fără imagini, ca să evite complicațiile care pot apărea.","Lasă elevii să ghicească ce variantă li se potrivește."],
+["p",5,"acc","Un elev nu are acces la internet acasă. Care este cea mai bună opțiune?","Învățătoarea îi oferă materialul descărcat sau tipărit și timp de lucru la școală.","Învățătoarea îi acordă calificativ mic, ca să evite complicațiile care pot apărea.","Învățătoarea îl exclude de la temele digitale, fără alternativă.","Învățătoarea le cere părinților să rezolve problema, fără a căuta altă soluție."],
+["p",5,"impl","Elevii clasei a III-a folosesc o aplicație de desen. Ce variantă este potrivită?","Învățătoarea le cere să ilustreze digital un moment din povestea citită și să îl prezinte colegilor.","Învățătoarea desenează, iar elevii privesc.","Toți elevii colorează același model.","Elevii privesc un desen gata făcut."],
+["a",5,"În DigCompEdu, domeniul 5 cuprinde: accesibilitate și incluziune, diferențiere și personalizare, implicarea activă a elevilor. În testul DigiProf, pentru acest domeniu apare și formularea „practică digitală incluzivă”.","Adaptarea sarcinilor digitale la nevoile și ritmul fiecărui elev. Ce competență DigCompEdu este vizată?","Diferențiere și personalizare.","Analiza dovezilor.","Comunicare organizațională.","Gestionarea resurselor digitale."],
+["a",5,"În DigCompEdu, accesibilitatea și incluziunea înseamnă că toți elevii, inclusiv cei cu cerințe educaționale speciale, pot folosi resursele digitale.","Asigurarea accesului tuturor elevilor, inclusiv al celor cu cerințe educaționale speciale, la resursele digitale. Ce competență DigCompEdu este vizată?","Accesibilitate și incluziune.","Feedback și planificare.","Dezvoltare profesională continuă.","Selectarea resurselor digitale."],
+["a",5,"Subtitrarea redă în scris conținutul sonor al unui videoclip.","Ce funcție ajută o persoană cu deficiențe de auz să urmărească un videoclip?","Subtitrarea","Volumul ridicat","Muzica de fundal","Viteza de redare mărită"],
+["a",5,"O platformă adaptivă își modifică automat sarcinile după răspunsurile fiecărui elev.","Ce înseamnă că o platformă de învățare este „adaptivă”?","Ajustează automat dificultatea sarcinilor în funcție de răspunsurile elevului.","Funcționează doar pe calculator.","Oferă aceleași exerciții tuturor.","Poate fi folosită doar de profesor."],
+["a",5,"Funcția text-to-speech citește cu voce textul afișat pe ecran.","Ce funcție sprijină o persoană cu dificultăți de citire?","Citirea textului cu voce (text-to-speech)","Micșorarea fontului","Animațiile rapide","Eliminarea imaginilor"],
+["a",5,"impl","Care exemplu arată implicarea activă a elevilor prin tehnologie?","Elevii creează un produs digital și îl prezintă.","Elevii privesc o prezentare.","Elevii copiază textul de pe ecran.","Elevii ascultă o înregistrare."],
+["g",6,"info","Elevii caută informații despre un scriitor. Care este cea mai bună opțiune?","Le solicită elevilor să compare două surse și să noteze sursa fiecărei informații.","Le solicită elevilor să folosească primul rezultat al căutării.","Le solicită elevilor să copieze integral un articol, fără a căuta altă soluție.","Le solicită elevilor să nu menționeze sursele, ca să evite complicațiile care pot apărea."],
+["g",6,"info","Elevii găsesc pe internet o știre senzațională despre un fenomen natural. Cum procedează corect?","Le solicită elevilor să verifice autorul, data și dacă informația apare și în surse de încredere.","Le solicită elevilor să distribuie știrea, fără a căuta o soluție mai potrivită.","Le solicită elevilor să o considere adevărată, deoarece are multe aprecieri.","Le solicită elevilor să ignore orice știre de pe internet, pentru a nu pierde timp cu alte soluții."],
+["g",6,"comd","Elevii lucrează în echipă la un proiect și comunică pe un canal digital. Ce variantă este potrivită?","Le solicită elevilor să formuleze mesaje clare și să respecte regulile de comunicare stabilite.","Le solicită elevilor să folosească doar prescurtări.","Le solicită elevilor să trimită doar emoticoane, considerând că așa este mai simplu și mai rapid.","Le solicită elevilor să nu comunice în scris, pentru a nu pierde timp cu alte soluții."],
+["g",6,"comd","Elevii organizează sarcinile unui proiect de grup. Care este soluția adecvată?","Le solicită elevilor să folosească un tabel partajat cu sarcinile, responsabilii și termenele.","Le solicită elevilor să stabilească totul verbal, ca să evite complicațiile care pot apărea.","Le solicită elevilor să lucreze fiecare separat, considerând că așa este mai simplu și mai rapid.","Le solicită elevilor să lase toate sarcinile liderului."],
+["g",6,"crea","Elevii realizează o prezentare despre sistemul solar. Cum procedează corect?","Le solicită elevilor să folosească imagini cu drept de utilizare și să menționeze sursele.","Le solicită elevilor să folosească orice imagine, fără a căuta o soluție mai potrivită.","Le solicită elevilor să copieze o prezentare existentă.","Le solicită elevilor să folosească doar text, ca să evite complicațiile care pot apărea."],
+["g",6,"crea","Elevii creează un videoclip scurt despre școala lor. Care este cea mai bună opțiune?","Le solicită elevilor să planifice secvențele într-un scenariu digital înainte de filmare.","Le solicită elevilor să filmeze fără niciun plan, pentru a nu pierde timp cu alte soluții.","Le solicită elevilor să folosească un videoclip existent.","Le solicită elevilor să renunțe la sunet, fără a căuta o soluție mai potrivită."],
+["g",6,"sig","Elevii își creează conturi pe platforma școlii. Ce variantă este potrivită?","Le solicită elevilor să aleagă parole puternice și să nu le comunice colegilor.","Le solicită elevilor să folosească toți aceeași parolă, considerând că așa este mai simplu.","Le solicită elevilor să folosească propriul nume drept parolă.","Le solicită elevilor să noteze parolele pe tablă, pentru a nu pierde timp."],
+["g",6,"sig","După apariția unui mesaj jignitor pe grupul clasei, elevii discută despre comportamentul online. Care este soluția adecvată?","Le solicită elevilor să păstreze dovada, să nu răspundă la provocare și să anunțe un adult.","Le solicită elevilor să răspundă în același fel, considerând că așa este mai simplu și mai rapid.","Le solicită elevilor să șteargă mesajul și să nu spună nimănui.","Le solicită elevilor să distribuie mesajul mai departe, ca să evite complicațiile care pot apărea."],
+["g",6,"prob","Elevii nu reușesc să deschidă un fișier primit de la colegi. Cum procedează corect?","Le solicită elevilor să verifice formatul fișierului și să încerce o aplicație compatibilă.","Le solicită elevilor să renunțe la fișier, fără a căuta o soluție mai potrivită.","Le solicită elevilor să aștepte, fără a încerca nimic.","Le solicită elevilor să șteargă fișierul, ca să evite complicațiile care pot apărea."],
+["g",6,"prob","Elevii constată că graficul creat într-o foaie de calcul afișează date greșite. Care este cea mai bună opțiune?","Le solicită elevilor să verifice datele selectate și tipul graficului și să corecteze.","Le solicită elevilor să deseneze graficul pe hârtie.","Le solicită elevilor să lase graficul așa, pentru a nu pierde timp cu alte soluții.","Le solicită elevilor să șteargă tabelul, fără a căuta o soluție mai potrivită."],
+["g",6,"info","Elevii adună imagini și articole pentru un proiect. Ce variantă este potrivită?","Le solicită elevilor să le organizeze în foldere denumite clar și să păstreze linkurile surselor.","Le solicită elevilor să salveze totul pe desktop, pentru a nu pierde timp cu alte soluții.","Le solicită elevilor să salveze fișierele fără denumiri, considerând că așa este mai simplu și mai rapid.","Le solicită elevilor să le caute din nou de fiecare dată."],
+["g",6,"sig","Elevii discută despre timpul petrecut în fața ecranelor. Care este soluția adecvată?","Le solicită elevilor să își monitorizeze timpul de utilizare și să stabilească pauze regulate.","Le solicită elevilor să ignore subiectul, considerând că așa este mai simplu și mai rapid.","Le solicită elevilor să folosească dispozitivele fără limită.","Le solicită elevilor să renunțe complet la tehnologie, ca să evite complicațiile care pot apărea."],
+["p",6,"info","Elevii clasei a III-a caută informații despre animalele din pădure. Care este cea mai bună opțiune?","Le solicită elevilor să folosească site-urile recomandate și să noteze de unde au luat informația.","Le solicită elevilor să folosească orice site, fără a căuta o soluție mai potrivită.","Le solicită elevilor să copieze tot textul găsit.","Le solicită elevilor să se uite doar la poze, ca să evite complicațiile care pot apărea."],
+["p",6,"info","Elevii clasei a IV-a găsesc două informații diferite despre același animal. Cum procedează corect?","Le solicită elevilor să verifice, împreună cu învățătoarea, într-o a treia sursă de încredere.","Le solicită elevilor să aleagă prima informație.","Le solicită elevilor să aleagă textul mai lung, pentru a nu pierde timp cu alte soluții.","Le solicită elevilor să renunțe la temă, fără a căuta o soluție mai potrivită."],
+["p",6,"comd","Elevii clasei a IV-a scriu mesaje pe platforma clasei. Ce variantă este potrivită?","Le solicită elevilor să salute și să scrie politicos și clar.","Le solicită elevilor să scrie doar cu majuscule.","Le solicită elevilor să folosească porecle, pentru a nu pierde timp.","Le solicită elevilor să scrie oricum doresc, considerând că așa este mai simplu."],
+["p",6,"comd","Copiii din grupa mare participă la o întâlnire video cu o altă grădiniță. Care este soluția adecvată?","Le solicită copiilor să vorbească pe rând și să asculte când vorbesc alții.","Le solicită copiilor să vorbească toți odată, ca să evite complicațiile.","Le solicită copiilor să nu spună nimic, considerând că așa este mai simplu și mai rapid.","Le solicită copiilor să se joace în timpul întâlnirii."],
+["p",6,"crea","Elevii clasei a II-a realizează o felicitare digitală. Cum procedează corect?","Le solicită elevilor să aleagă imagini, să scrie un mesaj scurt și să salveze lucrarea cu numele lor.","Le solicită elevilor să copieze o felicitare gata făcută, fără a căuta o soluție mai potrivită.","Le solicită elevilor să închidă aplicația fără a salva, ca să evite complicațiile care pot apărea.","Le solicită elevilor să privească felicitarea făcută de învățătoare."],
+["p",6,"crea","Preșcolarii realizează un desen într-o aplicație. Care este cea mai bună opțiune?","Le solicită copiilor să aleagă singuri culorile și formele și apoi să spună ce au desenat.","Le solicită copiilor doar să privească, fără a căuta o soluție mai potrivită.","Le solicită copiilor să refacă identic un model, pentru a nu pierde timp cu alte soluții.","Le solicită copiilor să aștepte ca educatoarea să deseneze."],
+["p",6,"sig","Elevii clasei a III-a discută despre jocurile online. Ce variantă este potrivită?","Le solicită elevilor să nu comunice numele, adresa sau fotografii persoanelor necunoscute.","Le solicită elevilor să accepte orice cerere de prietenie, considerând că așa este mai simplu.","Le solicită elevilor să își scrie adresa în profil, pentru a nu pierde timp cu alte soluții.","Le solicită elevilor să păstreze secrete față de părinți discuțiile din joc."],
+["p",6,"sig","Într-o activitate despre siguranța pe internet, copiii află ce să facă dacă văd pe ecran ceva care îi sperie. Care este soluția adecvată?","Le solicită copiilor să se oprească și să spună imediat unui adult de încredere.","Le solicită copiilor să păstreze secretul, considerând că așa este mai simplu și mai rapid.","Le solicită copiilor să arate imaginea altor copii.","Le solicită copiilor să continue să privească, ca să evite complicațiile."],
+["p",6,"prob","Elevii clasei a II-a constată că tableta nu redă sunetul. Cum procedează corect?","Le solicită elevilor să verifice volumul și căștile înainte de a cere ajutor.","Le solicită elevilor să renunțe la activitate, ca să evite complicațiile.","Le solicită elevilor să apese butoane la întâmplare.","Le solicită elevilor să ia tableta altui coleg, fără a căuta altă soluție."],
+["p",6,"prob","În timpul activității, un joc digital se blochează. Care este cea mai bună opțiune?","Le solicită elevilor să închidă și să redeschidă jocul, iar dacă nu pornește, să anunțe învățătoarea.","Le solicită elevilor să lovească ecranul, fără a căuta o soluție mai potrivită.","Le solicită elevilor să aștepte fără să spună nimic.","Le solicită elevilor să șteargă aplicația, pentru a nu pierde timp cu alte soluții."],
+["p",6,"sig","Elevii folosesc tabletele la o activitate. Ce variantă este potrivită?","Le solicită elevilor să respecte pauzele și să păstreze o poziție corectă.","Le solicită elevilor să țină tableta foarte aproape de ochi.","Le solicită elevilor să lucreze fără nicio pauză, considerând că așa este mai simplu.","Le solicită elevilor să dea volumul la maximum, pentru a nu pierde timp."],
+["p",6,"comd","Elevii clasei a IV-a lucrează în echipă la o prezentare despre localitatea lor. Care este soluția adecvată?","Le solicită elevilor să își împartă slide-urile și să noteze într-o listă comună cine ce face.","Le solicită elevilor să lucreze toți la același slide, ca să evite complicațiile care pot apărea.","Le solicită elevilor să lase un singur coleg să lucreze.","Le solicită elevilor să nu comunice între ei, considerând că așa este mai simplu și mai rapid."],
+["a",6,"O parolă puternică este lungă și combină litere mari și mici, cifre și simboluri, fără date personale.","Care dintre următoarele este o parolă puternică?","O combinație lungă de litere mari și mici, cifre și simboluri.","Data nașterii.","123456","Numele propriu."],
+["a",6,"Phishingul folosește mesaje sau site-uri false pentru a obține parole și alte date personale.","Ce este „phishingul”?","O încercare de a obține date personale prin mesaje sau site-uri false.","Un program antivirus.","Un tip de fișier.","O metodă de arhivare a fișierelor."],
+["a",6,"Setările de confidențialitate stabilesc cine vă poate vedea postările și datele personale.","Ce practică vă protejează cel mai bine datele personale pe rețelele de socializare?","Verificarea periodică a setărilor de confidențialitate și limitarea audienței postărilor.","Acceptarea tuturor cererilor de prietenie.","Publicarea locației în timp real.","Setarea tuturor postărilor ca „Public”."],
+["a",6,"În DigCompEdu, domeniul 6 cuprinde: competența informațională și media, comunicare și colaborare, creare de conținut, utilizare responsabilă, rezolvarea problemelor.","Sprijinirea elevilor în evaluarea credibilității surselor online. Ce competență DigCompEdu este vizată?","Competența informațională și media.","Feedback și planificare.","Colaborare profesională.","Diferențiere și personalizare."],
+["a",6,"Amprenta digitală este totalitatea urmelor lăsate prin activitatea online: postări, căutări, comentarii, conturi.","Ce înseamnă „amprenta digitală” a unei persoane?","Urmele pe care le lasă prin activitatea sa online.","Parola contului de e-mail.","Semnătura electronică.","Fotografia de profil."],
+["a",6,"Protocolul HTTPS criptează datele transmise între browser și site.","Ce indică faptul că un site transmite datele în mod criptat?","Adresa începe cu „https://”.","Site-ul are multe reclame.","Site-ul are culori vii.","Site-ul se încarcă repede."]
+];
+
+const DOM = ["","Implicare profesională","Resurse digitale","Predare și învățare","Evaluare","Abilitarea elevilor","Facilitarea competenței digitale a elevilor"];
+const PR = {
+  refl:"Practică reflexivă: când ceva nu funcționează, profesorul își analizează propria abordare și o ajustează, fără să renunțe la tehnologie și fără să dea vina pe elevi.",
+  dpc:"Dezvoltare profesională continuă: profesorul învață activ din resurse digitale (tutoriale, ghiduri, comunități) și testează treptat la clasă ce a învățat.",
+  com:"Comunicare organizațională: mesaje scurte, clare, structurate, transmise tuturor celor vizați pe canalul oficial.",
+  colab:"Colaborare profesională: un spațiu digital comun, în care fiecare contribuie și toți lucrează pe aceeași versiune.",
+  sel:"Selectarea resurselor: resursa se alege după obiectiv, vârsta și nivelul elevilor – scurtă, clară, verificată în prealabil.",
+  mod:"Crearea și modificarea resurselor: materialul se adaptează – se simplifică și se scurtează – păstrând esențialul și respectând sursa.",
+  org:"Gestionarea, protejarea și partajarea: fișiere organizate și denumite clar, acces limitat la datele personale, respectarea licențelor și a drepturilor de autor.",
+  pred:"Predare: resursa digitală este ghidată de profesor – parcursă pe secvențe, cu pauze și explicații pentru fiecare etapă.",
+  ghid:"Îndrumare: sprijinul se oferă la momentul potrivit, sub forma unor indicii și explicații pe care elevii le accesează la nevoie, nu a rezolvărilor gata făcute.",
+  cool:"Învățare colaborativă: lucrul în echipă are nevoie de structură – roluri, secțiuni și sarcini atribuite clar într-un spațiu comun.",
+  auto:"Învățare autoreglată: elevii primesc instrumente digitale cu care își verifică singuri pașii și își urmăresc progresul.",
+  strat:"Strategii de evaluare: instrumente digitale scurte, cu criterii clare, care arată rapid ce au înțeles elevii.",
+  date:"Analiza dovezilor: profesorul folosește rapoartele și datele generate de platformă și își ajustează predarea în funcție de ele.",
+  fb:"Feedback: observații specifice, plasate chiar lângă eroare, care îi arată elevului ce are de îmbunătățit – nu doar un scor sau un mesaj general.",
+  dif:"Diferențiere și personalizare: sarcinile se atribuie după nivelul și nevoile fiecărui elev, nu aceeași variantă pentru toți.",
+  acc:"Accesibilitate și incluziune: resursa se adaptează (font, contrast, audio, subtitrare, alternativă offline) astfel încât niciun elev să nu fie exclus.",
+  impl:"Implicarea activă a elevilor: elevii acționează ei înșiși cu instrumentul digital – marchează, modifică, creează, argumentează – nu doar privesc.",
+  info:"Competența informațională și media: elevii compară sursele, le verifică credibilitatea, notează proveniența și își organizează informațiile.",
+  comd:"Comunicare și colaborare digitală: elevii comunică clar și respectuos și își documentează rolurile și sarcinile într-un spațiu partajat.",
+  crea:"Crearea de conținut digital: elevii planifică, creează și revizuiesc propriile produse, respectând drepturile de autor.",
+  sig:"Utilizare responsabilă: protejarea datelor personale și a parolelor, comportament sigur online și echilibru în utilizarea ecranelor.",
+  prob:"Rezolvarea problemelor digitale: elevii încearcă mai întâi să identifice cauza și să testeze soluții simple, apoi cer ajutor."
+};
+const PROFILE = {g:"Gimnaziu și liceu", p:"Clasele primare și grădiniță"};
+const MODE = {sim:{n:66, min:90, title:"Simulare de examen"}, tr:{n:20, min:0, title:"Antrenare rapidă"}};
+const LS_RUN="digiprofA_run_v1", LS_HIST="digiprofA_hist_v1";
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {
+  get(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const pct1 = x => (Math.round(x*10)/10).toFixed(1).replace(".",",")+"%";
+function fmt(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60), s=sec%60; return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0"); }
+
+let pickP=null, pickM=null, S=null, tick=null, filter="wrong";
+
+/* ---------- views ---------- */
+function show(id){ for(const v of ["home","quiz","result","cert"]) $("#"+v).hidden = v!==id; window.scrollTo(0,0); }
+
+/* ---------- home ---------- */
+document.querySelectorAll(".pick").forEach(b => b.addEventListener("click", () => {
+  const grp = b.parentElement; grp.querySelectorAll(".pick").forEach(x => x.setAttribute("aria-checked","false"));
+  b.setAttribute("aria-checked","true");
+  if(b.dataset.profile) pickP=b.dataset.profile; if(b.dataset.mode) pickM=b.dataset.mode;
+  const ready = pickP && pickM; $("#start").disabled = !ready;
+  $("#startNote").textContent = ready ? (pickM==="sim" ? "Simulare: 66 de itemi, 90 de minute. Pentru nivelul A2 sunt necesare cel puțin 53 de răspunsuri corecte (80%)." : "Antrenare: 20 de itemi din toate cele 6 domenii, cu explicație după fiecare răspuns.") : "Alegeți profilul și tipul testului pentru a începe.";
+}));
+$("#start").addEventListener("click", () => startTest(pickP, pickM, $("#name").value.trim()));
+
+function poolFor(profile, d){ const r=[]; BANK.forEach((q,i)=>{ if(q[1]===d && (q[0]===profile||q[0]==="a")) r.push(i); }); return r; }
+function startTest(profile, mode, name){
+  const per = mode==="sim" ? [11,11,11,11,11,11] : shuffle([4,4,3,3,3,3]);
+  let items=[];
+  for(let d=1; d<=6; d++){
+    shuffle(poolFor(profile,d)).slice(0, per[d-1]).forEach(id => {
+      const n = BANK[id].length-4; items.push({id, ord: shuffle([...Array(n).keys()])});
+    });
+  }
+  if(mode==="tr") items = shuffle(items);
+  S = {profile, mode, name, items, ans: items.map(()=>-1), flag: items.map(()=>false), cur:0,
+       t0: Date.now(), endAt: mode==="sim" ? Date.now()+MODE.sim.min*60000 : 0, done:false};
+  save(); openQuiz();
+}
+function save(){ if(S && !S.done) store.set(LS_RUN, S); }
+function openQuiz(){
+  $("#barTitle").textContent = MODE[S.mode].title;
+  $("#barProfile").textContent = PROFILE[S.profile];
+  $("#flag").hidden = S.mode!=="sim";
+  $("#legend").innerHTML = S.mode==="sim"
+    ? '<span><i class="a"></i>cu răspuns</span><span><i></i>fără răspuns</span><span><i class="f"></i>marcată</span>'
+    : '<span><i class="g"></i>corect</span><span><i class="b"></i>greșit</span><span><i></i>fără răspuns</span>';
+  const g=$("#gridn"); g.innerHTML="";
+  S.items.forEach((_,i)=>{ const b=document.createElement("button"); b.textContent=i+1; b.setAttribute("aria-label","Întrebarea "+(i+1)); b.addEventListener("click",()=>go(i)); g.appendChild(b); });
+  show("quiz"); render(); clearInterval(tick); tick=setInterval(clock, 500); clock();
+}
+function clock(){
+  if(!S || S.done) return;
+  const el=$("#time"), box=$("#timer");
+  if(S.mode==="sim"){
+    const left=(S.endAt-Date.now())/1000; el.textContent=fmt(left); box.classList.toggle("low", left<600);
+    if(left<=0) finish();
+  } else { el.textContent=fmt((Date.now()-S.t0)/1000); box.classList.remove("low"); }
+}
+const isRight = i => S.ans[i]>=0 && S.items[i].ord[S.ans[i]]===0;
+function render(){
+  const i=S.cur, it=S.items[i], q=BANK[it.id], tr=S.mode==="tr", answered=S.ans[i]>=0;
+  $("#qno").textContent = "Întrebarea "+(i+1)+" din "+S.items.length;
+  $("#qdom").textContent = DOM[q[1]]; $("#qdom").hidden = !tr;
+  $("#qtext").textContent = q[3];
+  const box=$("#opts"); box.innerHTML="";
+  it.ord.forEach((oi,pos)=>{
+    const b=document.createElement("button"); b.className="opt"; b.type="button";
+    b.innerHTML='<span class="l">'+"abcdef"[pos]+'</span><span class="t">'+esc(q[4+oi])+'</span>';
+    if(tr && answered){ b.disabled=true; if(oi===0) b.classList.add("good"); else if(S.ans[i]===pos) b.classList.add("bad"); }
+    else if(S.ans[i]===pos) b.classList.add("sel");
+    b.addEventListener("click",()=>choose(pos)); box.appendChild(b);
+  });
+  const ex=$("#explain");
+  if(tr && answered){ const ok=isRight(i); ex.hidden=false; ex.className="explain"+(ok?"":" no");
+    ex.innerHTML="<b>"+(ok?"Corect!":"Răspuns greșit.")+"</b>"+esc(PR[q[2]]||q[2]); } else ex.hidden=true;
+  $("#prev").disabled = i===0;
+  const last = i===S.items.length-1;
+  $("#next").textContent = last ? "Finalizează testul" : "Următoarea →";
+  $("#next").classList.toggle("gold", last);
+  $("#flag").classList.toggle("on", S.flag[i]); $("#flag").textContent = S.flag[i] ? "⚑ Marcată" : "⚑ Marchează";
+  [...$("#gridn").children].forEach((b,k)=>{
+    b.className = (k===i?"c ":"") + (S.ans[k]>=0 ? (tr ? (isRight(k)?"g":"b") : "a") : "") + (S.flag[k]?" f":"");
+  });
+  $("#prog").style.width = (S.ans.filter(a=>a>=0).length/S.items.length*100)+"%";
+}
+function choose(pos){
+  const i=S.cur; if(S.mode==="tr" && S.ans[i]>=0) return;
+  S.ans[i] = (S.mode==="sim" && S.ans[i]===pos) ? -1 : pos; save(); render();
+  if(S.mode==="tr") $("#next").focus();
+}
+function go(i){ if(i<0||i>=S.items.length) return; S.cur=i; save(); render(); if(window.innerWidth<860) window.scrollTo(0,0); }
+$("#prev").addEventListener("click",()=>go(S.cur-1));
+$("#next").addEventListener("click",()=>{ if(S.cur===S.items.length-1) askFinish(); else go(S.cur+1); });
+$("#flag").addEventListener("click",()=>{ S.flag[S.cur]=!S.flag[S.cur]; save(); render(); });
+$("#finish").addEventListener("click", askFinish);
+document.addEventListener("keydown", e=>{
+  if($("#quiz").hidden || !$("#modal").hidden || e.ctrlKey || e.metaKey || e.altKey) return;
+  const k=e.key.toLowerCase(); let pos=-1;
+  if(k>="1"&&k<="6") pos=+k-1; else if(k.length===1&&k>="a"&&k<="f") pos=k.charCodeAt(0)-97;
+  if(pos>=0 && pos<S.items[S.cur].ord.length){ choose(pos); e.preventDefault(); }
+  else if(e.key==="ArrowRight") go(S.cur+1); else if(e.key==="ArrowLeft") go(S.cur-1);
+});
+
+/* ---------- modal ---------- */
+function ask(title, text, yes, no, cb){
+  $("#mTitle").textContent=title; $("#mText").textContent=text; $("#mYes").textContent=yes; $("#mNo").textContent=no;
+  $("#modal").hidden=false; $("#mYes").focus();
+  $("#mYes").onclick=()=>{ $("#modal").hidden=true; cb(); }; $("#mNo").onclick=()=>{ $("#modal").hidden=true; };
+}
+function askFinish(){
+  const left=S.ans.filter(a=>a<0).length;
+  ask("Finalizați testul?", left ? "Aveți "+left+(left===1?" întrebare fără răspuns.":" întrebări fără răspuns.")+" După finalizare nu mai puteți modifica răspunsurile." : "Ați răspuns la toate întrebările. După finalizare nu mai puteți modifica răspunsurile.", "Da, finalizez", "Mai verific", finish);
+}
+
+/* ---------- results ---------- */
+function finish(){
+  if(!S || S.done) return; clearInterval(tick); $("#modal").hidden=true;
+  S.done=true; S.dur=Math.min((Date.now()-S.t0)/1000, S.mode==="sim"?MODE.sim.min*60:1e9);
+  S.score=S.items.filter((_,i)=>isRight(i)).length; S.pct=S.score/S.items.length*100; S.date=Date.now();
+  S.code="DA-"+new Date(S.date).toISOString().slice(2,10).replace(/-/g,"")+"-"+Math.random().toString(36).slice(2,6).toUpperCase();
+  store.del(LS_RUN);
+  const h=store.get(LS_HIST)||[]; h.unshift({d:S.date,p:S.profile,m:S.mode,s:S.score,n:S.items.length}); store.set(LS_HIST,h.slice(0,6));
+  showResult();
+}
+function showResult(){
+  const n=S.items.length, a2=S.pct>=80, sim=S.mode==="sim";
+  $("#rPct").textContent=pct1(S.pct); $("#rScore").textContent=S.score+" din "+n+" puncte";
+  const lv=$("#rLvl");
+  if(sim){ lv.textContent=a2?"Nivel estimat: A2":"Nivel estimat: A1"; lv.className="lvl"+(a2?"":" a1");
+    $("#rTitle").textContent=a2?"Felicitări! Ați atins pragul pentru nivelul A2.":"Rezultatul corespunde nivelului A1.";
+    $("#rMsg").textContent=a2?"Ați obținut cel puțin 80%, rezultatul care la testul real permite certificarea nivelului A2. Revedeți totuși domeniile cu punctaj mai mic.":"Pentru nivelul A2 sunt necesare cel puțin 53 de răspunsuri corecte din 66 (80%). Vă mai lipsesc "+(53-S.score)+" puncte – revedeți greșelile de mai jos și reluați simularea.";
+  } else { lv.textContent=a2?"Prag A2 atins":"Sub pragul A2"; lv.className="lvl"+(a2?"":" a1");
+    $("#rTitle").textContent=a2?"Foarte bine! Sunteți peste pragul de 80%.":"Mai exersați: pragul pentru A2 este 80%.";
+    $("#rMsg").textContent="Antrenarea rapidă are 20 de itemi. Pentru o estimare a nivelului A1 / A2 parcurgeți simularea completă, cu 66 de itemi în 90 de minute."; }
+  $("#ringArc").style.strokeDashoffset = 326.7*(1-S.pct/100);
+  const per={}; S.items.forEach((it,i)=>{ const d=BANK[it.id][1]; per[d]=per[d]||[0,0]; per[d][1]++; if(isRight(i)) per[d][0]++; });
+  $("#doms").innerHTML = Object.keys(per).map(d=>{ const [c,t]=per[d], p=c/t*100;
+    return '<div class="dom"><div class="top"><span>'+d+". "+esc(DOM[d])+'</span><span>'+c+" / "+t+'</span></div><div class="track"><i class="'+(p<80?"low":"")+'" style="width:'+p+'%"></i></div></div>'; }).join("");
+  renderReview(); show("result");
+}
+function renderReview(){
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on", c.dataset.f===filter));
+  const out=[]; S.items.forEach((it,i)=>{
+    const ok=isRight(i); if(filter==="wrong" && ok) return;
+    const q=BANK[it.id];
+    out.push('<div class="rev"><div class="h"><b>Întrebarea '+(i+1)+'</b><em class="'+(ok?"ok":"no")+'">'+(ok?"Corect":(S.ans[i]<0?"Fără răspuns":"Greșit"))+'</em></div><p class="q">'+esc(q[3])+'</p><ul>'+
+      it.ord.map((oi,pos)=>'<li class="'+(oi===0?"good":(S.ans[i]===pos?"bad":""))+'"><i>'+(oi===0?"✓":(S.ans[i]===pos?"✗":"abcdef"[pos]+"."))+'</i><span>'+esc(q[4+oi])+'</span></li>').join("")+
+      '</ul><p class="why">'+esc(PR[q[2]]||q[2])+'</p></div>');
+  });
+  $("#review").innerHTML = out.length ? out.join("") : '<div class="rev"><p class="q" style="margin:0">Nicio greșeală – toate răspunsurile sunt corecte.</p></div>';
+}
+document.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{ filter=c.dataset.f; renderReview(); }));
+$("#again").addEventListener("click",()=>{ S=null; home(); });
+
+/* ---------- certificate ---------- */
+(function star(){ let d=""; const n=24; for(let i=0;i<n*2;i++){ const r=i%2?41:47, a=Math.PI*i/n; d+=(i?"L":"M")+(50+r*Math.cos(a)).toFixed(2)+" "+(50+r*Math.sin(a)).toFixed(2); } $("#sealStar").setAttribute("d",d+"Z"); })();
+function fillCert(){
+  const sim=S.mode==="sim", a2=S.pct>=80, n=S.items.length;
+  $("#cNm").textContent = S.name || "—";
+  $("#cSub").textContent = sim ? "Simulare de examen · 66 de itemi · 90 de minute" : "Antrenare rapidă · 20 de itemi";
+  $("#cTxt").innerHTML = "pentru parcurgerea "+(sim?"simulării testului":"antrenării pentru testul")+" de competențe digitale – <b>nivelul A</b>, profilul <b>"+esc(PROFILE[S.profile])+"</b>, pe cele 6 domenii ale cadrului DigCompEdu.";
+  $("#cScore").textContent=S.score+" / "+n; $("#cPct").textContent=pct1(S.pct);
+  $("#cLvl").textContent = sim ? (a2?"A2":"A1") : (a2?"Atins":"Neatins");
+  $("#cLvlLab").textContent = sim ? "Nivel estimat" : "Prag A2 (80%)";
+  $("#cDur").textContent = Math.max(1,Math.round(S.dur/60))+" min";
+  $("#cDate").textContent = new Date(S.date).toLocaleDateString("ro-RO",{day:"numeric",month:"long",year:"numeric"});
+  $("#cCode").textContent = "Cod: "+S.code;
+  $("#sealLvl").textContent = sim ? (a2?"A2":"A1") : pct1(S.pct).replace(/,\d/,"");
+  $("#sealLvl").setAttribute("font-size", sim?24:17); $("#sealLvl").setAttribute("y", sim?56:54);
+  $("#sealSub").textContent = sim ? "NIVEL ESTIMAT" : "ANTRENARE";
+}
+$("#toCert").addEventListener("click",()=>{ $("#cname").value=S.name||""; fillCert(); show("cert"); if(!S.name) $("#cname").focus(); });
+$("#cname").addEventListener("input",e=>{ S.name=e.target.value.trim(); $("#cNm").textContent=S.name||"—"; });
+$("#backRes").addEventListener("click",()=>show("result"));
+$("#print").addEventListener("click",()=>{ if(!S.name){ $("#cname").focus(); return; } window.print(); });
+
+/* ---------- init ---------- */
+function home(){
+  const run=store.get(LS_RUN), r=$("#resume");
+  if(run && run.items && !run.done && (run.mode==="tr" || run.endAt>Date.now())){
+    r.hidden=false; $("#resumeTxt").textContent="Aveți un test neterminat ("+MODE[run.mode].title.toLowerCase()+", "+PROFILE[run.profile].toLowerCase()+"): "+run.ans.filter(a=>a>=0).length+" din "+run.items.length+" răspunsuri.";
+    $("#resumeYes").onclick=()=>{ S=run; openQuiz(); }; $("#resumeNo").onclick=()=>{ store.del(LS_RUN); r.hidden=true; };
+  } else { r.hidden=true; if(run) store.del(LS_RUN); }
+  const h=store.get(LS_HIST)||[]; $("#hist").hidden=!h.length;
+  $("#histList").innerHTML=h.map(x=>"<li><span>"+new Date(x.d).toLocaleDateString("ro-RO",{day:"numeric",month:"short"})+" · "+esc(MODE[x.m].title)+" · "+esc(PROFILE[x.p])+"</span><b>"+x.s+" / "+x.n+" ("+pct1(x.s/x.n*100)+")</b></li>").join("");
+  show("home");
+}
+home();
+</script>
+</body>
+</html>
